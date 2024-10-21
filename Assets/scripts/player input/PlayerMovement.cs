@@ -8,14 +8,12 @@ public class PlayerMovement : MonoBehaviour
 {
     PlayerInput input;
     InputAction move;
-    [SerializeField] float speed = 7;
 
-    Vector3 jump;
-    float jumpSpeed = 2f;
+    public Vector3 jump;
+    public float jumpSpeed = 3.0f;
 
-    bool grounded;
+    public bool isGrounded;
     Rigidbody rb;
-    InputAction jump;
     [SerializeField] float speed = 7;
     // Start is called before the first frame update
     void Start()
@@ -23,13 +21,12 @@ public class PlayerMovement : MonoBehaviour
         input = GetComponent<PlayerInput>();
         move = input.actions.FindAction("move");
         rb = GetComponent<Rigidbody>();
-        jump = new Vector3(0f, 3f, 0f);
+        jump = new Vector3(0.0f, 2.0f, 0.0f);
     }
 
     void OnCollisionStay()
     {
-        grounded = true;
-        jump = input.actions.FindAction("jump");
+        isGrounded = true;
     }
 
     // Update is called once per frame
@@ -37,23 +34,19 @@ public class PlayerMovement : MonoBehaviour
     {
         movement();
 
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
 
             rb.AddForce(jump * jumpSpeed, ForceMode.Impulse);
-            grounded = false;
+            isGrounded = false;
         }
     }
 
     void movement() { 
-        Vector2 direction = move.ReadValue<Vector2>();
-        transform.position += new Vector3(direction.x, 0, direction.y) * Time.deltaTime * speed;
-
         playerMovement();
     }
 
     void playerMovement() {
-        Debug.Log(jump.ReadValue<Vector2>());
         Vector2 direction = move.ReadValue<Vector2>();
         transform.position += new Vector3(direction.x, 0, direction.y) * speed * Time.deltaTime;
 
