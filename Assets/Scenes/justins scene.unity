@@ -426,7 +426,10 @@ GameObject:
   - component: {fileID: 1938433500}
   - component: {fileID: 1938433504}
   - component: {fileID: 1938433505}
+<<<<<<< Updated upstream
   - component: {fileID: 1938433506}
+=======
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -514,7 +517,11 @@ Transform:
   m_GameObject: {fileID: 1938433499}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< Updated upstream
   m_LocalPosition: {x: 4.82, y: 5.95, z: 4.6}
+=======
+  m_LocalPosition: {x: 5.23, y: 3.01, z: 3.84}
+>>>>>>> Stashed changes
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -529,6 +536,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938433499}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< Updated upstream
   m_Script: {fileID: 11500000, guid: 1901cea253c4ce94c99c8108d33f23a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -546,6 +554,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: ff2c775ab02f76e4ab7f13a5da5ca108, type: 3}
+=======
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: f2bd4baa0a9b0ab4aa8d7bc9b4edd266, type: 3}
+>>>>>>> Stashed changes
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -559,17 +573,27 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
+<<<<<<< Updated upstream
   m_DefaultControlScheme: 
   m_DefaultActionMap: 1
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!54 &1938433506
 Rigidbody:
+=======
+  m_DefaultControlScheme: movement
+  m_DefaultActionMap: New action map
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &1938433505
+MonoBehaviour:
+>>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938433499}
+<<<<<<< Updated upstream
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -590,6 +614,14 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+=======
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1901cea253c4ce94c99c8108d33f23a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 7
+>>>>>>> Stashed changes
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
