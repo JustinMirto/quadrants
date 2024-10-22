@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
         move = input.actions.FindAction("move");
         rb = GetComponent<Rigidbody>();
         jump = new Vector3(0.0f, 2.0f, 0.0f);
+
+        respawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform.position;
     }
 
     /*
@@ -53,14 +55,15 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
 
-        /*
+        
         //If the player falls offscreen respawns
         if (this.gameObject.transform.position.y < -10)
         {
             Debug.Log(this.gameObject.transform.position.y);
             this.gameObject.transform.position = respawnPoint;
+            rb.velocity = Vector3.zero;
         }
-        */
+        
 
     }
 
