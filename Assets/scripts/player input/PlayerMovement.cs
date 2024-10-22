@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 jump;
     public float jumpSpeed = 3.0f;
+    public Vector3 respawnPoint = Vector3.zero;
 
     public bool isGrounded;
     Rigidbody rb;
@@ -24,6 +25,17 @@ public class PlayerMovement : MonoBehaviour
         jump = new Vector3(0.0f, 2.0f, 0.0f);
     }
 
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        //If there is a respawn point
+        if (collision.gameObject.transform.childCount > 0)
+        {
+            respawnPoint = collision.transform.GetChild(0).gameObject.transform.position;
+            Debug.Log(respawnPoint);
+        }
+    }
+    */
     void OnCollisionStay()
     {
         isGrounded = true;
@@ -40,6 +52,16 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(jump * jumpSpeed, ForceMode.Impulse);
             isGrounded = false;
         }
+
+        /*
+        //If the player falls offscreen respawns
+        if (this.gameObject.transform.position.y < -10)
+        {
+            Debug.Log(this.gameObject.transform.position.y);
+            this.gameObject.transform.position = respawnPoint;
+        }
+        */
+
     }
 
     void movement() { 

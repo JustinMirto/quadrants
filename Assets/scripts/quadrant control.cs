@@ -29,9 +29,14 @@ public class quadrantcontrol : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit)) //Detects if ray cast is hit then output hit info to the dest variable
             {
-                Debug.Log(Vector3.Distance(emptySpace.transform.position, hit.transform.position));
+                if (!hit.transform.name.Contains("Quad")) //If touching the player and not the quadrant
+                {
+                    return;
+                }
+                //Debug.Log(Vector3.Distance(emptySpace.transform.position, hit.transform.position));
                 if(Vector3.Distance(emptySpace.transform.position, hit.transform.position) < 20)
                 {
+                    
                     Vector3 lastEmptySpacePos = emptySpace.transform.position;
 
                     if (Vector3.Distance(hit.transform.position, player.transform.position) < 14)
@@ -39,7 +44,6 @@ public class quadrantcontrol : MonoBehaviour
                         Vector3 Diff = lastEmptySpacePos - hit.transform.position;
                         player.transform.position += Diff;
                     }
-
                     emptySpace.transform.position = hit.transform.position;
                     hit.transform.position = lastEmptySpacePos;
                 }
