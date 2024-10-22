@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log(this.gameObject.transform.position.y);
             this.gameObject.transform.position = respawnPoint;
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
         }
         
 
