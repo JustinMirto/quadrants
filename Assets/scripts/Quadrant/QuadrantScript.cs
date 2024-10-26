@@ -14,4 +14,9 @@ public class Quadrant : MonoBehaviour
     {
         transform.position = Vector3.Lerp(transform.position, targetposition, 0.05f); // Will smoothly move from its original position to its target position 5% per frame
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(transform.name + " has collided with " + collision.transform.name);
+    }
 }
