@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class quadrantcontrol : MonoBehaviour
+public class QuadrantControl : MonoBehaviour
 {
     [SerializeField] private GameObject emptySpace;
     [SerializeField] private GameObject player;
@@ -42,10 +42,14 @@ public class quadrantcontrol : MonoBehaviour
                     if (Vector3.Distance(hit.transform.position, player.transform.position) < 14)
                     {
                         Vector3 Diff = lastEmptySpacePos - hit.transform.position;
-                        player.transform.position += Diff;
+                        Vector3 playerOrigin = player.transform.position;
+                        //player.transform.position = Vector3.Lerp(playerOrigin, playerOrigin + Diff, 0.05f);
+                        player.transform.position = playerOrigin + Diff;
                     }
-                    emptySpace.transform.position = hit.transform.position;
-                    hit.transform.position = lastEmptySpacePos;
+                    Quadrant thisQuadrant = hit.transform.GetComponent<Quadrant>();
+                    emptySpace.transform.position = thisQuadrant.targetposition;
+                    thisQuadrant.targetposition = lastEmptySpacePos;
+                    //Debug.Log(lastEmptySpacePos);
                 }
             }
 
