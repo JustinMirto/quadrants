@@ -19,4 +19,9 @@ public class Quadrant : MonoBehaviour
     {
         Debug.Log(transform.name + " has collided with " + collision.transform.name);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(transform.name + " has triggered with " + other.transform.name);
+    }
 }
