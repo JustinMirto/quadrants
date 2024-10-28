@@ -38,10 +38,12 @@ public class QuadrantGrid : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit)) //Detects if ray cast is hit then output hit info to the dest variable
                 {
+                    /*
                     if (!hit.transform.name.Contains("Quad")) //If touching the player and not the quadrant
                     {
                         return;
                     }
+                    */
 
                     EmptyQuadrant lastEmptySpace = EmptyQuadrantList[0]; // Need to make code to find the closest empty space and which one it is
                     Vector3 lastEmptySpacePos = lastEmptySpace.transform.position;
