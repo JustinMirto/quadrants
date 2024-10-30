@@ -58,8 +58,18 @@ public class QuadrantGrid : MonoBehaviour
                             player.transform.position = playerOrigin + Diff;
                         }
                         Quadrant thisQuadrant = hit.transform.GetComponent<Quadrant>();
+
+                        Collider colliderQuad = thisQuadrant.GetComponent<Collider>();
+                        Collider colliderEmpty = lastEmptySpace.GetComponent<Collider>();
+
+                        colliderQuad.enabled = false;
+                        colliderEmpty.enabled = false;
+
                         lastEmptySpace.transform.position = thisQuadrant.targetposition;
                         thisQuadrant.targetposition = lastEmptySpacePos;
+
+                        colliderQuad.enabled = true;
+                        colliderEmpty.enabled = true;
                         //Debug.Log(lastEmptySpacePos);
                     }
                 }

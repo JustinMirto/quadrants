@@ -19,6 +19,7 @@ public class Quadrant : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        /*
         //Debug.Log(transform.name + " has collided with " + collision.transform.name);
         Vector3 normal = collision.GetContact(0).normal;
 
@@ -39,6 +40,47 @@ public class Quadrant : MonoBehaviour
         {
             Debug.Log(transform.name + " north face is touching " + collision.collider + "'s South face with a normal of " + normal);
         }
+        */
+
+        
+        ContactPoint contact = collision.GetContact(0);
+        Vector3 normal = contact.normal;
+        Vector3 contactPoint = contact.point;
+
+            // Identify the other cube
+        GameObject otherCube = collision.gameObject;
+
+            // Calculate distances from the contact point to the centers of both cubes
+        Vector3 thisCubeCenter = transform.position;
+        Vector3 otherCubeCenter = otherCube.transform.position;
+
+            // Calculate the distance vector between the two cube centers
+        Vector3 distanceVector = otherCubeCenter - thisCubeCenter;
+
+        // Check which cube is adjacent or diagonal
+        if (Mathf.Abs(normal.x) > 0.9f) // Normal is primarily in the x direction
+        {
+            if (Mathf.Abs(distanceVector.z) < 0.1f) // No significant z difference
+            {
+                Debug.Log($"{transform.name} is directly touching {otherCube.name} on the East/West face.");
+            }
+            else
+            {
+                Debug.Log($"{transform.name} is at a diagonal with {otherCube.name}.");
+            }
+        }
+        else if (Mathf.Abs(normal.z) > 0.9f) // Normal is primarily in the z direction
+        {
+            if (Mathf.Abs(distanceVector.x) < 0.1f) // No significant x difference
+            {
+                Debug.Log($"{transform.name} is directly touching {otherCube.name} on the North/South face.");
+            }
+            else
+            {
+                Debug.Log($"{transform.name} is at a diagonal with {otherCube.name}.");
+            }
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other)
