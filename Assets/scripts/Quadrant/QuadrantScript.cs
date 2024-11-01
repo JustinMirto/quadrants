@@ -62,25 +62,51 @@ public class Quadrant : MonoBehaviour
         {
             if (Mathf.Abs(distanceVector.z) < 0.1f) // No significant z difference
             {
-                Debug.Log($"{transform.name} is directly touching {otherCube.name} on the East/West face.");
+                if(normal.x > 0)
+                {
+                    //This quadrant's east face is in contact
+                    this.neighboringQuadrants.Add("East", otherCube);
+                }
+                else
+                {
+                    //This quadrant's west face is in contact
+                    this.neighboringQuadrants.Add("West", otherCube);
+                }
+
+                //Debug.Log($"{transform.name} is directly touching {otherCube.name} on the East/West face.");
             }
             else
             {
-                Debug.Log($"{transform.name} is at a diagonal with {otherCube.name}.");
+                //Debug.Log($"{transform.name} is at a diagonal with {otherCube.name}.");
             }
         }
         else if (Mathf.Abs(normal.z) > 0.9f) // Normal is primarily in the z direction
         {
             if (Mathf.Abs(distanceVector.x) < 0.1f) // No significant x difference
             {
-                Debug.Log($"{transform.name} is directly touching {otherCube.name} on the North/South face.");
+                if(normal.z > 0)
+                {
+                    //This quadrant's north face is in contact
+                    this.neighboringQuadrants.Add("North", otherCube);
+                }
+                else
+                {
+                    //This quadrant's south face is in contact
+                    this.neighboringQuadrants.Add("South", otherCube);
+                }
+
+                //Debug.Log($"{transform.name} is directly touching {otherCube.name} on the North/South face.");
             }
             else
             {
-                Debug.Log($"{transform.name} is at a diagonal with {otherCube.name}.");
+                //Debug.Log($"{transform.name} is at a diagonal with {otherCube.name}.");
             }
         }
-        
+
+        foreach (KeyValuePair<string, GameObject> entry in this.neighboringQuadrants)
+        {
+            Debug.Log(this.transform.name + " -> " + entry);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
