@@ -47,6 +47,7 @@ public class QuadrantGrid : MonoBehaviour
 
                     EmptyQuadrant lastEmptySpace = EmptyQuadrantList[0]; // Need to make code to find the closest empty space and which one it is
                     Vector3 lastEmptySpacePos = lastEmptySpace.transform.position;
+                    Quadrant thisQuadrant = hit.transform.GetComponent<Quadrant>();
 
                     if (Vector3.Distance(lastEmptySpace.transform.position, hit.transform.position) < 20)
                     {
@@ -57,7 +58,6 @@ public class QuadrantGrid : MonoBehaviour
                             //player.transform.position = Vector3.Lerp(playerOrigin, playerOrigin + Diff, 0.05f);
                             player.transform.position = playerOrigin + Diff;
                         }
-                        Quadrant thisQuadrant = hit.transform.GetComponent<Quadrant>();
 
                         Collider colliderQuad = thisQuadrant.GetComponent<Collider>();
                         Collider colliderEmpty = lastEmptySpace.GetComponent<Collider>();

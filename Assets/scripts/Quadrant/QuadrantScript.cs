@@ -64,13 +64,27 @@ public class Quadrant : MonoBehaviour
             {
                 if(normal.x > 0)
                 {
+                    if (this.neighboringQuadrants.ContainsKey("East"))
+                    {
+                        this.neighboringQuadrants["East"] = otherCube;
+                    }
+                    else
+                    {
+                        this.neighboringQuadrants.Add("East", otherCube);
+                    }
                     //This quadrant's east face is in contact
-                    this.neighboringQuadrants.Add("East", otherCube);
                 }
                 else
                 {
+                    if (this.neighboringQuadrants.ContainsKey("West"))
+                    {
+                        this.neighboringQuadrants["West"] = otherCube;
+                    }
+                    else
+                    {
+                        this.neighboringQuadrants.Add("West", otherCube);
+                    }
                     //This quadrant's west face is in contact
-                    this.neighboringQuadrants.Add("West", otherCube);
                 }
 
                 //Debug.Log($"{transform.name} is directly touching {otherCube.name} on the East/West face.");
@@ -87,12 +101,26 @@ public class Quadrant : MonoBehaviour
                 if(normal.z > 0)
                 {
                     //This quadrant's north face is in contact
-                    this.neighboringQuadrants.Add("North", otherCube);
+                    if (this.neighboringQuadrants.ContainsKey("North"))
+                    {
+                        this.neighboringQuadrants["North"] = otherCube;
+                    }
+                    else
+                    {
+                        this.neighboringQuadrants.Add("North", otherCube);
+                    }
                 }
                 else
                 {
                     //This quadrant's south face is in contact
-                    this.neighboringQuadrants.Add("South", otherCube);
+                    if (this.neighboringQuadrants.ContainsKey("South"))
+                    {
+                        this.neighboringQuadrants["South"] = otherCube;
+                    }
+                    else
+                    {
+                        this.neighboringQuadrants.Add("South", otherCube);
+                    }
                 }
 
                 //Debug.Log($"{transform.name} is directly touching {otherCube.name} on the North/South face.");
