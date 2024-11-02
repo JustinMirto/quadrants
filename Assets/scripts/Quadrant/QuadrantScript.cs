@@ -5,7 +5,8 @@ public class Quadrant : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public Vector3 targetposition; // Position the Quadrant is suppose to goto
-    public Dictionary<string, GameObject> neighboringQuadrants = new Dictionary<string, GameObject>();
+    public Dictionary<string, GameObject> neighbouringQuadrants = new Dictionary<string, GameObject>();
+
     void Start()
     {
         targetposition = transform.position; //Make sure the quadrant doesn't move to Vector0 automatically
@@ -19,79 +20,58 @@ public class Quadrant : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        /*
-        //Debug.Log(transform.name + " has collided with " + collision.transform.name);
-        Vector3 normal = collision.GetContact(0).normal;
-
-        //Deal with corner states
-        if (normal.x == 1) // Colliding object is touching the right face
-        {
-            Debug.Log(transform.name + " west face is touching " + collision.collider + "'s East face with a normal of " + normal);
-        }
-        if (normal.z == 1) // Colliding object is touching the up face
-        {
-            Debug.Log(transform.name + " south face is touching " + collision.collider + "'s North face with a normal of" + normal);
-        }
-        if (normal.x == -1) // Colliding object is touching the left face
-        {
-            Debug.Log(transform.name + " east is touching " + collision.collider + "'s West face with a normal of " + normal);
-        }
-        if (normal.z == -1) // Colliding object is touching the down face
-        {
-            Debug.Log(transform.name + " north face is touching " + collision.collider + "'s South face with a normal of " + normal);
-        }
-        */
-
+        //neighbouringQuadrants.Clear();
+        Debug.Log(this.transform.name + " Collided with " + collision.collider.name);
         
         ContactPoint contact = collision.GetContact(0);
         Vector3 normal = contact.normal;
         Vector3 contactPoint = contact.point;
 
-            // Identify the other cube
-        GameObject otherCube = collision.gameObject;
+            // Identify the other Quadrant
+        GameObject otherQuadrant = collision.gameObject;
 
-            // Calculate distances from the contact point to the centers of both cubes
-        Vector3 thisCubeCenter = transform.position;
-        Vector3 otherCubeCenter = otherCube.transform.position;
+            // Calculate distances from the contact point to the centers of both Quadrants
+        Vector3 thisQuadrantCenter = transform.position;
+        Vector3 otherQuadrantCenter = otherQuadrant.transform.position;
 
-            // Calculate the distance vector between the two cube centers
-        Vector3 distanceVector = otherCubeCenter - thisCubeCenter;
+            // Calculate the distance vector between the two Quadrant centers
+        Vector3 distanceVector = otherQuadrantCenter - thisQuadrantCenter;
 
-        // Check which cube is adjacent or diagonal
+        // Check which Quadrant is adjacent or diagonal
         if (Mathf.Abs(normal.x) > 0.9f) // Normal is primarily in the x direction
         {
             if (Mathf.Abs(distanceVector.z) < 0.1f) // No significant z difference
             {
                 if(normal.x > 0)
                 {
-                    if (this.neighboringQuadrants.ContainsKey("East"))
+                    if (this.neighbouringQuadrants.ContainsKey("East"))
                     {
-                        this.neighboringQuadrants["East"] = otherCube;
+                        this.neighbouringQuadrants["East"] = otherQuadrant;
                     }
                     else
                     {
-                        this.neighboringQuadrants.Add("East", otherCube);
+                        this.neighbouringQuadrants.Add("East", otherQuadrant);
                     }
                     //This quadrant's east face is in contact
                 }
                 else
                 {
-                    if (this.neighboringQuadrants.ContainsKey("West"))
+                    if (this.neighbouringQuadrants.ContainsKey("West"))
                     {
-                        this.neighboringQuadrants["West"] = otherCube;
+                        this.neighbouringQuadrants["West"] = otherQuadrant;
                     }
                     else
                     {
-                        this.neighboringQuadrants.Add("West", otherCube);
+                        this.neighbouringQuadrants.Add("West", otherQuadrant);
                     }
                     //This quadrant's west face is in contact
                 }
 
-                //Debug.Log($"{transform.name} is directly touching {otherCube.name} on the East/West face.");
+                //Debug.Log($"{transform.name} is directly touching {otherQuadrant.name} on the East/West face.");
             }
             else
             {
-                //Debug.Log($"{transform.name} is at a diagonal with {otherCube.name}.");
+                //Debug.Log($"{transform.name} is at a diagonal with {otherQuadrant.name}.");
             }
         }
         else if (Mathf.Abs(normal.z) > 0.9f) // Normal is primarily in the z direction
@@ -101,44 +81,48 @@ public class Quadrant : MonoBehaviour
                 if(normal.z > 0)
                 {
                     //This quadrant's north face is in contact
-                    if (this.neighboringQuadrants.ContainsKey("North"))
+                    if (this.neighbouringQuadrants.ContainsKey("North"))
                     {
-                        this.neighboringQuadrants["North"] = otherCube;
+                        this.neighbouringQuadrants["North"] = otherQuadrant;
                     }
                     else
                     {
-                        this.neighboringQuadrants.Add("North", otherCube);
+                        this.neighbouringQuadrants.Add("North", otherQuadrant);
                     }
                 }
                 else
                 {
                     //This quadrant's south face is in contact
-                    if (this.neighboringQuadrants.ContainsKey("South"))
+                    if (this.neighbouringQuadrants.ContainsKey("South"))
                     {
-                        this.neighboringQuadrants["South"] = otherCube;
+                        this.neighbouringQuadrants["South"] = otherQuadrant;
                     }
                     else
                     {
-                        this.neighboringQuadrants.Add("South", otherCube);
+                        this.neighbouringQuadrants.Add("South", otherQuadrant);
                     }
                 }
 
-                //Debug.Log($"{transform.name} is directly touching {otherCube.name} on the North/South face.");
+                //Debug.Log($"{transform.name} is directly touching {otherQuadrant.name} on the North/South face.");
             }
             else
             {
-                //Debug.Log($"{transform.name} is at a diagonal with {otherCube.name}.");
+                //Debug.Log($"{transform.name} is at a diagonal with {otherQuadrant.name}.");
             }
         }
 
-        foreach (KeyValuePair<string, GameObject> entry in this.neighboringQuadrants)
+        foreach (KeyValuePair<string, GameObject> entry in this.neighbouringQuadrants)
         {
-            Debug.Log(this.transform.name + " -> " + entry);
+            if (entry.Value.name.Contains("Empty"))
+            {
+                //Debug.Log(this.transform.name + " -> " + entry);
+            }
+            
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionExit(Collision collision)
     {
-        Debug.Log(transform.name + " has triggered with " + other.transform.name);
+        Debug.Log(collision.collider.name + " This collider is exiting " + this.transform.name);
     }
 }
