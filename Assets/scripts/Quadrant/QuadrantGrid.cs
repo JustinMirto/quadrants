@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class QuadrantGrid : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class QuadrantGrid : MonoBehaviour
     public Quadrant[] QuadrantList;
     public EmptyQuadrant[] EmptyQuadrantList;
     public List<GameObject> gameObjects;
+
+    public float fQuadrantSize = 15f; //Current scale in terms of the x and z coords
 
     private Camera _camera;
     [SerializeField] private GameObject player;
@@ -25,6 +28,7 @@ public class QuadrantGrid : MonoBehaviour
     {
         _camera = Camera.main;
         Debug.Log("new control script is starting");
+        InitialiseGrid();
     }
 
     // Update is called once per frame
@@ -48,18 +52,18 @@ public class QuadrantGrid : MonoBehaviour
                     Vector3 lastEmptySpacePos = lastEmptySpace.transform.position;
                     Quadrant thisQuadrant = hit.transform.GetComponent<Quadrant>();
 
+                    //Debug.Log(thisQuadrant.neighbouringQuadrants.Count);
                     foreach (KeyValuePair<string, GameObject> entry in thisQuadrant.neighbouringQuadrants)
                     {
                         if (entry.Value.name.Contains("Empty"))
                         {
-                            //Debug.Log(this.transform.name + " -> " + entry);
+                            Debug.Log(thisQuadrant.transform.name + " -> " + entry);
                         }
                         //Debug.Log(thisQuadrant.transform.name + " -> " + entry);
                     }
 
-                    //Diagonal quadrants also contain empty space
-                    if //(thisQuadrant.neighbouringQuadrants.ContainsValue(lastEmptySpace.gameObject))
-                       (Vector3.Distance(lastEmptySpace.transform.position, hit.transform.position) < 20)
+                    if (thisQuadrant.neighbouringQuadrants.ContainsValue(lastEmptySpace.gameObject))
+                       //(Vector3.Distance(lastEmptySpace.transform.position, hit.transform.position) < 20)
                     {
 
                         //thisQuadrant.neighbouringQuadrants.Clear();
@@ -72,18 +76,11 @@ public class QuadrantGrid : MonoBehaviour
                             player.transform.position = playerOrigin + Diff;
                         }
 
-                      
-                        //Collider colliderQuad = thisQuadrant.GetComponent<Collider>(); 
-                        //Collider colliderEmpty = lastEmptySpace.GetComponent<Collider>();
-
-                        //colliderQuad.enabled = false; Dont mess with colliders it prevents the onCollisionExit from working
-                        //colliderEmpty.enabled = false;
-
+                     
                         lastEmptySpace.transform.position = thisQuadrant.targetposition;
                         thisQuadrant.targetposition = lastEmptySpacePos;
 
-                        //colliderQuad.enabled = true;
-                        //colliderEmpty.enabled = true;
+                        InitialiseGrid();
 
                     }
                 }
@@ -91,35 +88,71 @@ public class QuadrantGrid : MonoBehaviour
         }
     }
 
-    void setNeighbouringQuadrant(Quadrant thisQuadrant)
-    {
 
-    }
-
-    void setNeighbouringQuadrants()
+    //Taken from chatGPT
+    //Will need to update to reduce strain
+    void InitialiseGrid()
     {
-        for (int i = 0; i < gameObjects.Count; i++)
+        Debug.Log("Reinitialising grid");
+        //Debug.Log("Quad size is " + fQuadrantSize); // For some reason the quad size remains at 5 will need to check this?
+
+        // Map to hold quadrants by their 2D grid positions (x, z only)
+        Dictionary<Vector2, GameObject> gridMap = new Dictionary<Vector2, GameObject>();
+
+
+        foreach (Quadrant quadrant in QuadrantList)
         {
-            GameObject gameObjectStart = gameObjects[i];
-            Quadrant thisQuad = gameObjectStart.GetComponent<Quadrant>();
-
-            if (thisQuad == null) // Only care about quadrants
-            {
-                continue;
-            }
-
-
-            foreach (GameObject gameObj in gameObjects)
-            {
-                if (gameObjectStart.Equals(gameObj))
-                {
-                    continue;
-                }
-
-
-            }
-
+            Vector2 gridPos = new Vector2(
+                Mathf.Round(quadrant.targetposition.x / 15),
+                Mathf.Round(quadrant.targetposition.z / 15)
+            );
+            gridMap[gridPos] = quadrant.gameObject;
         }
+
+        foreach (EmptyQuadrant empty in EmptyQuadrantList)
+        {
+            Vector2 gridPos = new Vector2(
+                Mathf.Round(empty.transform.position.x / 15),
+                Mathf.Round(empty.transform.position.z / 15)
+            );
+            gridMap[gridPos] = empty.gameObject;
+        }
+
+        // Assign neighbors (quadrants or empty spaces) for each quadrant
+        foreach (Quadrant quadrant in QuadrantList)
+        {
+            Vector2 pos = new Vector2(
+                Mathf.Round(quadrant.targetposition.x / 15),
+                Mathf.Round(quadrant.targetposition.z / 15)
+            );
+
+            quadrant.ClearNeighbours();
+
+            // Check for neighboring quadrants or empty spaces in each direction
+            if (gridMap.TryGetValue(pos + Vector2.up, out GameObject north))
+            {
+                //Debug.Log("Setting north");
+                quadrant.SetNeighbour("North", north);
+            }
+            if (gridMap.TryGetValue(pos + Vector2.down, out GameObject south))
+            {
+                //Debug.Log("Setting south");
+                quadrant.SetNeighbour("South", south);
+            }
+            if (gridMap.TryGetValue(pos + Vector2.right, out GameObject east))
+            {
+                //Debug.Log("Setting east");
+                quadrant.SetNeighbour("East", east);
+            }
+            if (gridMap.TryGetValue(pos + Vector2.left, out GameObject west))
+            {
+                //Debug.Log("Setting west");
+                quadrant.SetNeighbour("West", west);
+            }
+        }
+
+
+
     }
 
 }

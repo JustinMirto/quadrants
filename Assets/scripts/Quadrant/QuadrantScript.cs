@@ -18,8 +18,24 @@ public class Quadrant : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, targetposition, 0.05f); // Will smoothly move from its original position to its target position 5% per frame
     }
 
+    public void ClearNeighbours()
+    {
+        this.neighbouringQuadrants.Clear();
+    }
+
+    public void SetNeighbour(string neighbourKey, GameObject neighbourValue)
+    {
+        this.neighbouringQuadrants[neighbourKey] = neighbourValue;
+    }
+
+    public GameObject GetNeighbour(string neighbourKey)
+    {
+        return neighbouringQuadrants[neighbourKey];
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
+        /*
         //neighbouringQuadrants.Clear();
         Debug.Log(this.transform.name + " Collided with " + collision.collider.name);
         
@@ -119,10 +135,11 @@ public class Quadrant : MonoBehaviour
             }
             
         }
+        */
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        Debug.Log(collision.collider.name + " This collider is exiting " + this.transform.name);
+        //Debug.Log(collision.collider.name + " This collider is exiting " + this.transform.name);
     }
 }
