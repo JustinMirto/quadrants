@@ -52,7 +52,7 @@ public class QuadrantGrid : MonoBehaviour
                     Vector3 lastEmptySpacePos = lastEmptySpace.transform.position;
                     Quadrant thisQuadrant = hit.transform.GetComponent<Quadrant>();
 
-                    //Debug.Log(thisQuadrant.neighbouringQuadrants.Count);
+                    Debug.Log(hit.transform.name);
                     foreach (KeyValuePair<string, GameObject> entry in thisQuadrant.neighbouringQuadrants)
                     {
                         if (entry.Value.name.Contains("Empty"))
