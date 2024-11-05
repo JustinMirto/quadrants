@@ -7,7 +7,7 @@ public class Quadrant : MonoBehaviour
     public Vector3 targetposition; // Position the Quadrant is suppose to goto
     public Dictionary<string, GameObject> neighbouringQuadrants = new Dictionary<string, GameObject>();
 
-    void Start()
+    void Awake()
     {
         targetposition = transform.position; //Make sure the quadrant doesn't move to Vector0 automatically
     }
