@@ -64,13 +64,14 @@ public class QuadrantGrid : MonoBehaviour
                         GameObject neighbour = null;
 
                         Debug.Log(hit.transform.name);
+                        Debug.Log(thisQuadrant);
                         foreach (KeyValuePair<string, GameObject> entry in thisQuadrant.neighbouringQuadrants)
                         {
                             if (entry.Value.name.Contains("Empty"))
                             {
                                 //Debug.Log(thisQuadrant.transform.name + " -> " + entry);
                             }
-                            //Debug.Log(thisQuadrant.transform.name + " -> " + entry);
+                            Debug.Log(thisQuadrant.transform.name + " -> " + entry);
                         }
 
                         if (hit2.transform.name.Contains("North"))
