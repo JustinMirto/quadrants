@@ -96,7 +96,7 @@ public class QuadrantGrid : MonoBehaviour
                             //(thisQuadrant.neighbouringQuadrants.ContainsValue(lastEmptySpace.gameObject))
                         //(Vector3.Distance(lastEmptySpace.transform.position, hit.transform.position) < 20)
                         {
-                            Debug.Log("Found empty quadrant");
+                            //Debug.Log("Found empty quadrant");
 
                             EmptyQuadrant lastEmptySpace = neighbour.GetComponent<EmptyQuadrant>();
                             Vector3 lastEmptySpacePos = lastEmptySpace.transform.position;
@@ -141,8 +141,8 @@ public class QuadrantGrid : MonoBehaviour
     //Will need to update to reduce strain
     void InitialiseGrid()
     {
-        Debug.Log("Reinitialising grid");
-        Debug.Log("Quad size is " + fQuadrantSize); // For some reason the quad size remains at 5 will need to check this?
+        //Debug.Log("Reinitialising grid");
+        //Debug.Log("Quad size is " + fQuadrantSize); // For some reason the quad size remains at 5 will need to check this?
 
         // Map to hold quadrants by their 2D grid positions (x, z only)
         Dictionary<Vector2, GameObject> gridMap = new Dictionary<Vector2, GameObject>();
