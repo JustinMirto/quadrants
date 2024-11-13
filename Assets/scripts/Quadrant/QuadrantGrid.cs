@@ -11,7 +11,7 @@ public class QuadrantGrid : MonoBehaviour
     public EmptyQuadrant[] EmptyQuadrantList;
     public List<GameObject> gameObjects;
 
-    public float fQuadrantSize = 15f; //Current scale in terms of the x and z coords
+    public float fQuadrantSize = 5f; //Current scale in terms of the x and z coords
 
     private Camera _camera;
     [SerializeField] private GameObject player;
@@ -52,27 +52,18 @@ public class QuadrantGrid : MonoBehaviour
 
                     if (Physics.Raycast(ray, out hit2, Mathf.Infinity, 1 << LayerMask.NameToLayer("QuadrantClick"))) //Detects which collider has been hit by the ray cast
                     {
-                        Debug.Log(hit2.transform.name);
+                        //Debug.Log(hit2.transform.name);
 
+                        Quadrant thisQuadrant = hit.transform.GetComponentInParent<Quadrant>();
+                        if (thisQuadrant == null)
+                        {
+                            thisQuadrant = hit.transform.GetComponent<Quadrant>();
+                        }
 
-                        
-                        
-
-                        //hit.
-
-                        Quadrant thisQuadrant = hit.transform.GetComponent<Quadrant>();
                         GameObject neighbour = null;
 
-                        Debug.Log(hit.transform.name);
-                        Debug.Log(thisQuadrant);
-                        foreach (KeyValuePair<string, GameObject> entry in thisQuadrant.neighbouringQuadrants)
-                        {
-                            if (entry.Value.name.Contains("Empty"))
-                            {
-                                //Debug.Log(thisQuadrant.transform.name + " -> " + entry);
-                            }
-                            Debug.Log(thisQuadrant.transform.name + " -> " + entry);
-                        }
+                        //Debug.Log(hit.transform.name);
+                        //Debug.Log(thisQuadrant);
 
                         if (hit2.transform.name.Contains("North"))
                         {
@@ -94,6 +85,7 @@ public class QuadrantGrid : MonoBehaviour
                         //EmptyQuadrant lastEmptySpace = EmptyQuadrantList[0]; // Need to make code to find the closest empty space and which one it is
                         if (!neighbour)
                         {
+                            Debug.Log("There are no neighbours");
                             return;
                         }
 
@@ -110,15 +102,17 @@ public class QuadrantGrid : MonoBehaviour
 
                             //thisQuadrant.neighbouringQuadrants.Clear();
 
-                            if (Vector3.Distance(hit.transform.position, player.transform.position) < 14)
+                            if (player != null)
                             {
-                                Vector3 Diff = lastEmptySpacePos - hit.transform.position;
-                                Vector3 playerOrigin = player.transform.position;
-                                //player.transform.position = Vector3.Lerp(playerOrigin, playerOrigin + Diff, 0.05f);
-                                player.transform.position = playerOrigin + Diff;
+                                if (Vector3.Distance(hit.transform.position, player.transform.position) < 14)
+                                {
+                                    Vector3 Diff = lastEmptySpacePos - hit.transform.position;
+                                    Vector3 playerOrigin = player.transform.position;
+                                    //player.transform.position = Vector3.Lerp(playerOrigin, playerOrigin + Diff, 0.05f);
+                                    player.transform.position = playerOrigin + Diff;
+                                }
                             }
-
-
+                            
                             lastEmptySpace.transform.position = thisQuadrant.targetposition;
                             thisQuadrant.targetposition = lastEmptySpacePos;
 
@@ -140,7 +134,7 @@ public class QuadrantGrid : MonoBehaviour
     void InitialiseGrid()
     {
         Debug.Log("Reinitialising grid");
-        //Debug.Log("Quad size is " + fQuadrantSize); // For some reason the quad size remains at 5 will need to check this?
+        Debug.Log("Quad size is " + fQuadrantSize); // For some reason the quad size remains at 5 will need to check this?
 
         // Map to hold quadrants by their 2D grid positions (x, z only)
         Dictionary<Vector2, GameObject> gridMap = new Dictionary<Vector2, GameObject>();
@@ -149,30 +143,39 @@ public class QuadrantGrid : MonoBehaviour
         foreach (Quadrant quadrant in QuadrantList)
         {
             Vector2 gridPos = new Vector2(
-                Mathf.Round(quadrant.targetposition.x / 15),
-                Mathf.Round(quadrant.targetposition.z / 15)
+                Mathf.Round(quadrant.targetposition.x / fQuadrantSize),
+                Mathf.Round(quadrant.targetposition.z / fQuadrantSize)
             );
             gridMap[gridPos] = quadrant.gameObject;
+            Debug.Log(gridPos);
         }
 
         foreach (EmptyQuadrant empty in EmptyQuadrantList)
         {
             Vector2 gridPos = new Vector2(
-                Mathf.Round(empty.transform.position.x / 15),
-                Mathf.Round(empty.transform.position.z / 15)
+                Mathf.Round(empty.transform.position.x / fQuadrantSize),
+                Mathf.Round(empty.transform.position.z / fQuadrantSize)
             );
             gridMap[gridPos] = empty.gameObject;
+            Debug.Log(gridPos);
+        }
+
+        foreach(KeyValuePair<Vector2, GameObject> pair in gridMap)
+        {
+            //Debug.Log(pair);
         }
 
         // Assign neighbors (quadrants or empty spaces) for each quadrant
         foreach (Quadrant quadrant in QuadrantList)
         {
             Vector2 pos = new Vector2(
-                Mathf.Round(quadrant.targetposition.x / 15),
-                Mathf.Round(quadrant.targetposition.z / 15)
+                Mathf.Round(quadrant.targetposition.x / fQuadrantSize),
+                Mathf.Round(quadrant.targetposition.z / fQuadrantSize)
             );
 
-            quadrant.ClearNeighbours();    
+            quadrant.ClearNeighbours();
+            //Debug.Log(pos);
+
 
             // Check for neighboring quadrants or empty spaces in each direction
             if (gridMap.TryGetValue(pos + Vector2.up, out GameObject north))
