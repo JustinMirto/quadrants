@@ -49,16 +49,17 @@ public class QuadrantGrid : MonoBehaviour
                 RaycastHit hit2;
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Quadrant"))) //Detects if ray cast is hit then output hit info to the dest variable
                 {
+                    Quadrant thisQuadrant = hit.transform.GetComponentInParent<Quadrant>();
+                    if (thisQuadrant == null)
+                    {
+                        thisQuadrant = hit.transform.GetComponent<Quadrant>();
+                    }
 
                     if (Physics.Raycast(ray, out hit2, Mathf.Infinity, 1 << LayerMask.NameToLayer("QuadrantClick"))) //Detects which collider has been hit by the ray cast
                     {
-                        //Debug.Log(hit2.transform.name);
+                        Debug.Log(hit2.transform.name);
 
-                        Quadrant thisQuadrant = hit.transform.GetComponentInParent<Quadrant>();
-                        if (thisQuadrant == null)
-                        {
-                            thisQuadrant = hit.transform.GetComponent<Quadrant>();
-                        }
+                        
 
                         GameObject neighbour = null;
 
@@ -121,9 +122,16 @@ public class QuadrantGrid : MonoBehaviour
                         }
 
                     }
-                }
+                    else
+                    {
+                        if (thisQuadrant.CompareTag("RotateClockwise"))
+                        {
+                            Debug.Log("Rotating Quadrant");
+                            thisQuadrant.RotateClockwise();
+                        }
+                    }
 
-                
+                }
             }
         }
     }
@@ -147,7 +155,6 @@ public class QuadrantGrid : MonoBehaviour
                 Mathf.Round(quadrant.targetposition.z / fQuadrantSize)
             );
             gridMap[gridPos] = quadrant.gameObject;
-            Debug.Log(gridPos);
         }
 
         foreach (EmptyQuadrant empty in EmptyQuadrantList)
@@ -157,7 +164,6 @@ public class QuadrantGrid : MonoBehaviour
                 Mathf.Round(empty.transform.position.z / fQuadrantSize)
             );
             gridMap[gridPos] = empty.gameObject;
-            Debug.Log(gridPos);
         }
 
         foreach(KeyValuePair<Vector2, GameObject> pair in gridMap)

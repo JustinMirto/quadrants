@@ -37,7 +37,8 @@ public class Quadrant : MonoBehaviour
 
     public void RotateClockwise()
     {
-        targetrotation = Quaternion.Euler(0, transform.rotation.y + 90, 0); // Creates a 90 degree rotation
+        Debug.Log("Rotating Quadrant at " + transform.rotation.y);
+        targetrotation *= Quaternion.Euler(0, transform.rotation.y + 90, 0); // Creates a 90 degree rotation
     }
 
 }
