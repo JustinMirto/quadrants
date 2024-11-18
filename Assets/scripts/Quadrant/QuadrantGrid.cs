@@ -21,13 +21,17 @@ public class QuadrantGrid : MonoBehaviour
         EmptyQuadrantList = GetComponentsInChildren<EmptyQuadrant>();
         gameObjects = new List<GameObject> ();
         foreach (Transform child in transform)
+        {
             gameObjects.Add(child.gameObject);
+        }
+            
     }
 
     private void Start()
     {
         _camera = Camera.main;
         Debug.Log("new control script is starting");
+        
         InitialiseGrid();
     }
 
@@ -49,6 +53,8 @@ public class QuadrantGrid : MonoBehaviour
                 RaycastHit hit2;
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Quadrant"))) //Detects if ray cast is hit then output hit info to the dest variable
                 {
+
+
                     Quadrant thisQuadrant = hit.transform.GetComponentInParent<Quadrant>();
                     if (thisQuadrant == null)
                     {
@@ -65,6 +71,12 @@ public class QuadrantGrid : MonoBehaviour
 
                         //Debug.Log(hit.transform.name);
                         //Debug.Log(thisQuadrant);
+
+                        Debug.Log(thisQuadrant.neighbouringQuadrants.Count);
+                        foreach (KeyValuePair<string, GameObject> pair in thisQuadrant.neighbouringQuadrants)
+                        {
+                            Debug.Log(pair);
+                        }
 
                         if (hit2.transform.name.Contains("North"))
                         {
