@@ -7,10 +7,12 @@ public class Quadrant : MonoBehaviour
     public Vector3 targetposition; // Position the Quadrant is suppose to goto
     public Dictionary<string, GameObject> neighbouringQuadrants = new Dictionary<string, GameObject>();
     private Quaternion targetrotation = Quaternion.identity;
+    private bool bIsHoldingMouseBtn;
 
     void Awake()
     {
         targetposition = transform.position; //Make sure the quadrant doesn't move to Vector0 automatically
+        bIsHoldingMouseBtn = false;
     }
 
     // Update is called once per frame
@@ -41,4 +43,28 @@ public class Quadrant : MonoBehaviour
         targetrotation *= Quaternion.Euler(0, transform.rotation.y + 90, 0); // Creates a 90 degree rotation
     }
 
+
+    public void OnMouseDown()
+    {
+        bIsHoldingMouseBtn = true;
+    }
+
+    public void OnMouseDrag()
+    {
+        
+    }
+
+    public void OnMouseUp()
+    {
+        if (bIsHoldingMouseBtn)
+        {
+            if (this.CompareTag("RotateClockwise"))
+            {
+                Debug.Log("Rotating Quadrant In Quadrant Script");
+                this.RotateClockwise();
+            }
+
+            bIsHoldingMouseBtn = false;
+        }
+    }
 }

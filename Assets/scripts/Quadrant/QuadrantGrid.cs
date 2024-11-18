@@ -138,8 +138,8 @@ public class QuadrantGrid : MonoBehaviour
                     {
                         if (thisQuadrant.CompareTag("RotateClockwise"))
                         {
-                            Debug.Log("Rotating Quadrant");
-                            thisQuadrant.RotateClockwise();
+                            //Debug.Log("Rotating Quadrant");
+                            //thisQuadrant.RotateClockwise();
                         }
                     }
 
