@@ -1256,7 +1256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jump: {x: 0, y: 0, z: 0}
-  jumpSpeed: 10
+  jumpSpeed: 25
   fallSpeed: 2
   respawnPoint: {x: 0, y: 0, z: 0}
   isGrounded: 1
