@@ -374,6 +374,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetposition: {x: 0, y: 0, z: 0}
+  position:
+    m_Name: Position
+    m_Type: 0
+    m_ExpectedControlType: Vector2
+    m_Id: 6d040a80-2b90-465a-8ff9-e4161335a2da
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 3436edb6-c383-4828-bd95-79e2127cc77b
+      m_Path: <Mouse>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Position
+      m_Flags: 0
+    m_Flags: 0
+  press:
+    m_Name: Press
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 620683ef-6e62-418c-a710-d66c0c16ebe4
+    m_Processors: 
+    m_Interactions: Press
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 0fab6fd6-6d9d-48db-9fcd-542ed00c0708
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    m_Flags: 0
+  swipeResistance: 100
 --- !u!1 &7367001627313658349
 GameObject:
   m_ObjectHideFlags: 0

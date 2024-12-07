@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 using static UnityEngine.EventSystems.EventTrigger;
 
 public class QuadrantGrid : MonoBehaviour
@@ -12,6 +14,13 @@ public class QuadrantGrid : MonoBehaviour
     public List<GameObject> gameObjects;
 
     public float fQuadrantSize = 5f; //Current scale in terms of the x and z coords
+
+    [SerializeField] private InputAction position, press;
+    [SerializeField] private float swipeResistance = 100f;
+
+    private Vector2 initialSwipePos;
+    private Vector2 CurrentSwipePos => position.ReadValue<Vector2>();
+    private Vector2 swipeDirection = Vector2.zero;
 
     private Camera _camera;
     [SerializeField] private GameObject player;
@@ -24,7 +33,34 @@ public class QuadrantGrid : MonoBehaviour
         {
             gameObjects.Add(child.gameObject);
         }
-            
+
+        position.Enable();
+        press.Enable();
+        press.performed += _ => {
+            initialSwipePos = CurrentSwipePos;
+        };
+        press.canceled += _ => DetectSwipe();
+
+    }
+
+    private void DetectSwipe()
+    {
+        Vector2 delta = CurrentSwipePos - initialSwipePos;
+        swipeDirection = Vector2.zero;
+
+
+
+        if (Math.Abs(delta.x) > swipeResistance) // Swipe on the x axis
+        {
+            swipeDirection.x = Mathf.Clamp(delta.x, -1, 1);
+        }
+
+        if (Math.Abs(delta.y) > swipeResistance) // Swipe on the x axis
+        {
+            swipeDirection.y = Mathf.Clamp(delta.y, -1, 1);
+        }
+
+        
     }
 
     private void Start()
@@ -54,7 +90,6 @@ public class QuadrantGrid : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Quadrant"))) //Detects if ray cast is hit then output hit info to the dest variable
                 {
 
-
                     Quadrant thisQuadrant = hit.transform.GetComponentInParent<Quadrant>();
                     if (thisQuadrant == null)
                     {
@@ -64,8 +99,6 @@ public class QuadrantGrid : MonoBehaviour
                     if (Physics.Raycast(ray, out hit2, Mathf.Infinity, 1 << LayerMask.NameToLayer("QuadrantClick"))) //Detects which collider has been hit by the ray cast
                     {
                         Debug.Log(hit2.transform.name);
-
-                        
 
                         GameObject neighbour = null;
 
@@ -148,6 +181,113 @@ public class QuadrantGrid : MonoBehaviour
         }
     }
 
+    void handleDirectionMovementWithColliders(Quadrant thisQuadrant, RaycastHit hit2)
+    {
+        GameObject neighbour = null;
+
+        //Debug.Log(hit.transform.name);
+        //Debug.Log(thisQuadrant);
+
+        Debug.Log(thisQuadrant.neighbouringQuadrants.Count);
+        foreach (KeyValuePair<string, GameObject> pair in thisQuadrant.neighbouringQuadrants)
+        {
+            Debug.Log(pair);
+        }
+
+        if (hit2.transform.name.Contains("North"))
+        {
+            thisQuadrant.neighbouringQuadrants.TryGetValue("North", out neighbour);
+        }
+        else if (hit2.transform.name.Contains("South"))
+        {
+            thisQuadrant.neighbouringQuadrants.TryGetValue("South", out neighbour);
+        }
+        else if (hit2.transform.name.Contains("East"))
+        {
+            thisQuadrant.neighbouringQuadrants.TryGetValue("East", out neighbour);
+        }
+        else if (hit2.transform.name.Contains("West"))
+        {
+            thisQuadrant.neighbouringQuadrants.TryGetValue("West", out neighbour);
+        }
+
+        //EmptyQuadrant lastEmptySpace = EmptyQuadrantList[0]; // Need to make code to find the closest empty space and which one it is
+        if (!neighbour)
+        {
+            Debug.Log("There are no neighbours");
+            return;
+        }
+
+        Debug.Log(neighbour.gameObject.GetType());
+    }
+
+    void HandleDirectionMovementWithSwipe(Quadrant thisQuadrant)
+    {
+        GameObject neighbour = null;
+
+        if (swipeDirection.Equals(Vector2.zero))
+        {
+            return;
+        }
+
+        if (swipeDirection.Equals(Vector2.up))
+        {
+            thisQuadrant.neighbouringQuadrants.TryGetValue("North", out neighbour);
+        }
+        else if (swipeDirection.Equals(Vector2.down))
+        {
+            thisQuadrant.neighbouringQuadrants.TryGetValue("South", out neighbour);
+        }
+        else if (swipeDirection.Equals(Vector2.right))
+        {
+            thisQuadrant.neighbouringQuadrants.TryGetValue("East", out neighbour);
+        }
+        else if (swipeDirection.Equals(Vector2.left))
+        {
+            thisQuadrant.neighbouringQuadrants.TryGetValue("West", out neighbour);
+        }
+
+        //EmptyQuadrant lastEmptySpace = EmptyQuadrantList[0]; // Need to make code to find the closest empty space and which one it is
+        if (!neighbour)
+        {
+            Debug.Log("There are no neighbours");
+            return;
+        }
+
+        MoveQuadrant(thisQuadrant, neighbour);
+    }
+
+    void MoveQuadrant(Quadrant thisQuadrant, GameObject neighbour)
+    {
+        if (neighbour.GetComponent<EmptyQuadrant>() != null)
+        //(thisQuadrant.neighbouringQuadrants.ContainsValue(lastEmptySpace.gameObject))
+        //(Vector3.Distance(lastEmptySpace.transform.position, hit.transform.position) < 20)
+        {
+            //Debug.Log("Found empty quadrant");
+
+            EmptyQuadrant lastEmptySpace = neighbour.GetComponent<EmptyQuadrant>();
+            Vector3 lastEmptySpacePos = lastEmptySpace.transform.position;
+
+            //thisQuadrant.neighbouringQuadrants.Clear();
+
+            if (player != null)
+            {
+                if (Vector3.Distance(thisQuadrant.transform.position, player.transform.position) < 14)
+                {
+                    Vector3 Diff = lastEmptySpacePos - thisQuadrant.transform.position;
+                    Vector3 playerOrigin = player.transform.position;
+                    //player.transform.position = Vector3.Lerp(playerOrigin, playerOrigin + Diff, 0.05f);
+                    player.transform.position = playerOrigin + Diff;
+                }
+            }
+
+            lastEmptySpace.transform.position = thisQuadrant.targetposition;
+            thisQuadrant.targetposition = lastEmptySpacePos;
+
+            InitialiseGrid();
+
+        }
+    }
 
     //Taken from chatGPT
     //Will need to update to reduce strain
@@ -221,6 +361,7 @@ public class QuadrantGrid : MonoBehaviour
 
 
     }
+
 
 }
 
