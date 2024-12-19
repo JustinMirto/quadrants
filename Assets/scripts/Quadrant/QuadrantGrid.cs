@@ -48,7 +48,7 @@ public class QuadrantGrid : MonoBehaviour
         Vector2 delta = CurrentSwipePos - initialSwipePos;
         swipeDirection = Vector2.zero;
 
-
+        Debug.Log("Detecting swipe");
 
         if (Math.Abs(delta.x) > swipeResistance) // Swipe on the x axis
         {
@@ -60,6 +60,7 @@ public class QuadrantGrid : MonoBehaviour
             swipeDirection.y = Mathf.Clamp(delta.y, -1, 1);
         }
 
+        Debug.Log(swipeDirection);
         
     }
 
@@ -81,6 +82,8 @@ public class QuadrantGrid : MonoBehaviour
     {
         if (_camera != null)
         {
+            Quadrant currentQuadrant = null;
+
             // Registers every frame the mouse button is held down
             if (Input.GetMouseButtonDown(0))
             {
@@ -90,10 +93,10 @@ public class QuadrantGrid : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Quadrant"))) //Detects if ray cast is hit then output hit info to the dest variable
                 {
 
-                    Quadrant thisQuadrant = hit.transform.GetComponentInParent<Quadrant>();
-                    if (thisQuadrant == null)
+                    currentQuadrant = hit.transform.GetComponentInParent<Quadrant>();
+                    if (currentQuadrant == null)
                     {
-                        thisQuadrant = hit.transform.GetComponent<Quadrant>();
+                        currentQuadrant = hit.transform.GetComponent<Quadrant>();
                     }
 
                     if (Physics.Raycast(ray, out hit2, Mathf.Infinity, 1 << LayerMask.NameToLayer("QuadrantClick"))) //Detects which collider has been hit by the ray cast
@@ -105,77 +108,28 @@ public class QuadrantGrid : MonoBehaviour
                         //Debug.Log(hit.transform.name);
                         //Debug.Log(thisQuadrant);
 
-                        Debug.Log(thisQuadrant.neighbouringQuadrants.Count);
-                        foreach (KeyValuePair<string, GameObject> pair in thisQuadrant.neighbouringQuadrants)
-                        {
-                            Debug.Log(pair);
-                        }
-
-                        if (hit2.transform.name.Contains("North"))
-                        {
-                           thisQuadrant.neighbouringQuadrants.TryGetValue("North", out neighbour);
-                        }
-                        else if (hit2.transform.name.Contains("South"))
-                        {
-                            thisQuadrant.neighbouringQuadrants.TryGetValue("South", out neighbour);
-                        }
-                        else if (hit2.transform.name.Contains("East"))
-                        {
-                            thisQuadrant.neighbouringQuadrants.TryGetValue("East", out neighbour);
-                        }
-                        else if (hit2.transform.name.Contains("West"))
-                        {
-                            thisQuadrant.neighbouringQuadrants.TryGetValue("West", out neighbour);
-                        }
-
-                        //EmptyQuadrant lastEmptySpace = EmptyQuadrantList[0]; // Need to make code to find the closest empty space and which one it is
-                        if (!neighbour)
-                        {
-                            Debug.Log("There are no neighbours");
-                            return;
-                        }
-
-                        Debug.Log(neighbour.gameObject.GetType());
-
-                        if (neighbour.GetComponent<EmptyQuadrant>() != null)
-                            //(thisQuadrant.neighbouringQuadrants.ContainsValue(lastEmptySpace.gameObject))
-                        //(Vector3.Distance(lastEmptySpace.transform.position, hit.transform.position) < 20)
-                        {
-                            //Debug.Log("Found empty quadrant");
-
-                            EmptyQuadrant lastEmptySpace = neighbour.GetComponent<EmptyQuadrant>();
-                            Vector3 lastEmptySpacePos = lastEmptySpace.transform.position;
-
-                            //thisQuadrant.neighbouringQuadrants.Clear();
-
-                            if (player != null)
-                            {
-                                if (Vector3.Distance(hit.transform.position, player.transform.position) < 14)
-                                {
-                                    Vector3 Diff = lastEmptySpacePos - hit.transform.position;
-                                    Vector3 playerOrigin = player.transform.position;
-                                    //player.transform.position = Vector3.Lerp(playerOrigin, playerOrigin + Diff, 0.05f);
-                                    player.transform.position = playerOrigin + Diff;
-                                }
-                            }
-                            
-                            lastEmptySpace.transform.position = thisQuadrant.targetposition;
-                            thisQuadrant.targetposition = lastEmptySpacePos;
-
-                            InitialiseGrid();
-
-                        }
-
+                        //handleDirectionMovementWithColliders(thisQuadrant, hit2);
+                        //HandleDirectionMovementWithSwipe(currentQuadrant);
                     }
                     else
                     {
-                        if (thisQuadrant.CompareTag("RotateClockwise"))
+                        if (currentQuadrant.CompareTag("RotateClockwise"))
                         {
                             //Debug.Log("Rotating Quadrant");
                             //thisQuadrant.RotateClockwise();
                         }
                     }
 
+                }
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                Debug.Log("Handling mouse up");
+                if (currentQuadrant != null)
+                {
+                    HandleDirectionMovementWithSwipe(currentQuadrant);
+                    currentQuadrant = null;
                 }
             }
         }
@@ -219,6 +173,7 @@ public class QuadrantGrid : MonoBehaviour
         }
 
         Debug.Log(neighbour.gameObject.GetType());
+        MoveQuadrant(thisQuadrant, neighbour);
     }
 
     void HandleDirectionMovementWithSwipe(Quadrant thisQuadrant)

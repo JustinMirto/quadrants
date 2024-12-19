@@ -451,8 +451,68 @@ PrefabInstance:
       value: Quadrant Grid
       objectReference: {fileID: 0}
     - target: {fileID: 3495994342157269912, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
+      propertyPath: press.m_Name
+      value: Press
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495994342157269912, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
+      propertyPath: press.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495994342157269912, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
       propertyPath: fQuadrantSize
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495994342157269912, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
+      propertyPath: position.m_Name
+      value: Position
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495994342157269912, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
+      propertyPath: position.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495994342157269912, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
+      propertyPath: press.m_Interactions
+      value: Press
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495994342157269912, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
+      propertyPath: press.m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495994342157269912, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
+      propertyPath: position.m_ExpectedControlType
+      value: Vector2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495994342157269912, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
+      propertyPath: press.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495994342157269912, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
+      propertyPath: position.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495994342157269912, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
+      propertyPath: press.m_SingletonActionBindings.Array.data[0].m_Id
+      value: b0a89d12-da42-4605-96c2-4b8eaac13a66
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495994342157269912, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
+      propertyPath: press.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Mouse>/leftButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495994342157269912, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
+      propertyPath: position.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 8d429fb7-34ac-4dab-a7c5-fc8e1bdece27
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495994342157269912, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
+      propertyPath: press.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Press
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495994342157269912, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
+      propertyPath: position.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Mouse>/position
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495994342157269912, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
+      propertyPath: position.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Position
       objectReference: {fileID: 0}
     - target: {fileID: 3852837151783156540, guid: 72aaae3d73bde69479863a529279f9e8, type: 3}
       propertyPath: m_LocalPosition.x
