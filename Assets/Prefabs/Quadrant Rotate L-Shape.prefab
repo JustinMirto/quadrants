@@ -375,25 +375,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetposition: {x: 0, y: 0, z: 0}
-  position:
-    m_Name: Position
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: dfc4d0e2-db3e-46c9-a1c6-c7cfc46f5fff
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  press:
-    m_Name: Press
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: cfb1cc10-dc05-49f0-9187-b1755c1c6eac
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  swipeResistance: 100
 --- !u!1 &6979031574287144356
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,7 +577,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &279219228447052756
 Transform:
   m_ObjectHideFlags: 0

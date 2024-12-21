@@ -48,4 +48,23 @@ MonoBehaviour:
   EmptyQuadrantList: []
   gameObjects: []
   fQuadrantSize: 15
+  position:
+    m_Name: Position
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 72c781ed-701a-405f-bb0d-b1caa28758e3
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  press:
+    m_Name: Press
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 760cf3a9-bf65-4c4d-bfc6-86a2e30d6076
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  swipeResistance: 100
   player: {fileID: 0}

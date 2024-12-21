@@ -24,6 +24,9 @@ public class QuadrantGrid : MonoBehaviour
 
     private Camera _camera;
     [SerializeField] private GameObject player;
+
+    private Quadrant currentQuadrant;
+
     void Awake()
     {
         QuadrantList = GetComponentsInChildren<Quadrant>();
@@ -40,6 +43,7 @@ public class QuadrantGrid : MonoBehaviour
             initialSwipePos = CurrentSwipePos;
         };
         press.canceled += _ => DetectSwipe();
+        currentQuadrant = null;
 
     }
 
@@ -60,7 +64,7 @@ public class QuadrantGrid : MonoBehaviour
             swipeDirection.y = Mathf.Clamp(delta.y, -1, 1);
         }
 
-        Debug.Log(swipeDirection);
+        Debug.Log(swipeDirection + " is the swipe direction");
         
     }
 
@@ -82,7 +86,7 @@ public class QuadrantGrid : MonoBehaviour
     {
         if (_camera != null)
         {
-            Quadrant currentQuadrant = null;
+            //Quadrant currentQuadrant = null;
 
             // Registers every frame the mouse button is held down
             if (Input.GetMouseButtonDown(0))
@@ -125,7 +129,7 @@ public class QuadrantGrid : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0))
             {
-                Debug.Log("Handling mouse up");
+                Debug.Log("Handling mouse up " + currentQuadrant);
                 if (currentQuadrant != null)
                 {
                     HandleDirectionMovementWithSwipe(currentQuadrant);
@@ -242,6 +246,8 @@ public class QuadrantGrid : MonoBehaviour
             InitialiseGrid();
 
         }
+
+        currentQuadrant = null;
     }
 
     //Taken from chatGPT
