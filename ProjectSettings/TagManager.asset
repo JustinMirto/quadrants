@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Quadrant
   - RotateClockwise
+  - MoveOnly
   layers:
   - Default
   - TransparentFX

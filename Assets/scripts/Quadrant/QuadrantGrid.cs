@@ -153,8 +153,12 @@ public class QuadrantGrid : MonoBehaviour
                 Debug.Log("Handling mouse up " + currentQuadrant);
                 if (currentQuadrant != null)
                 {
-                    HandleDirectionMovementWithSwipe(currentQuadrant);
-                    currentQuadrant = null;
+                    Debug.Log("Tag is " + currentQuadrant.tag);
+                    if (currentQuadrant.CompareTag("MoveOnly"))
+                    {
+                        HandleDirectionMovementWithSwipe(currentQuadrant);
+                        currentQuadrant = null;
+                    }
                 }
             }
         }

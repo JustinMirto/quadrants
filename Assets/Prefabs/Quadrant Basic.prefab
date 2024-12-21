@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 5634445694821818333}
   m_Layer: 6
   m_Name: Quadrant
-  m_TagString: Untagged
+  m_TagString: MoveOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 3551266335694750093}
   m_Layer: 6
   m_Name: Quadrant Basic
-  m_TagString: Quadrant
+  m_TagString: MoveOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
