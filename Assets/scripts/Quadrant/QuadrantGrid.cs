@@ -17,6 +17,8 @@ public class QuadrantGrid : MonoBehaviour
 
     [SerializeField] private InputAction position, press;
     [SerializeField] private float swipeResistance = 100f;
+    [SerializeField] private float pressLimit = 10f;
+    private bool bIsPressed;
 
     private Vector2 initialSwipePos;
     private Vector2 CurrentSwipePos => position.ReadValue<Vector2>();
@@ -44,7 +46,7 @@ public class QuadrantGrid : MonoBehaviour
         };
         press.canceled += _ => DetectSwipe();
         currentQuadrant = null;
-
+        bIsPressed = false;
     }
 
     private void DetectSwipe()
@@ -62,6 +64,14 @@ public class QuadrantGrid : MonoBehaviour
         if (Math.Abs(delta.y) > swipeResistance) // Swipe on the x axis
         {
             swipeDirection.y = Mathf.Clamp(delta.y, -1, 1);
+        }
+
+        if (Math.Abs(delta.x) <= pressLimit) // Press on the x axis
+        {
+            if (Math.Abs(delta.y) <= pressLimit) // Press on the x axis
+            {
+                bIsPressed = true;
+            }
         }
 
         Debug.Log(swipeDirection + " is the swipe direction");
@@ -122,6 +132,17 @@ public class QuadrantGrid : MonoBehaviour
                             //Debug.Log("Rotating Quadrant");
                             //thisQuadrant.RotateClockwise();
                         }
+                    }
+
+
+                    if (bIsPressed)
+                    {
+                        if (currentQuadrant.CompareTag("RotateClockwise"))
+                        {
+                            Debug.Log("Rotating Quadrant");
+                            currentQuadrant.RotateClockwise();
+                        }
+                        bIsPressed = false;
                     }
 
                 }
