@@ -10,12 +10,14 @@ public class PlayerMovement : MonoBehaviour
     InputAction move;
 
     public Vector3 jump;
-    public float jumpSpeed = 3.0f;
+    public float jumpSpeed = 25.0f;
+    public float fallSpeed = 2.0f;
     public Vector3 respawnPoint = Vector3.zero;
 
     public bool isGrounded;
     Rigidbody rb;
-    [SerializeField] float speed = 7;
+    [SerializeField] float speed = 20;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,36 +25,25 @@ public class PlayerMovement : MonoBehaviour
         move = input.actions.FindAction("move");
         rb = GetComponent<Rigidbody>();
         jump = new Vector3(0.0f, 2.0f, 0.0f);
-
-        respawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform.position;
+        Physics.gravity = new Vector3(0, -100, 0);
     }
 
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        //If there is a respawn point
-        if (collision.gameObject.transform.childCount > 0)
-        {
-            respawnPoint = collision.transform.GetChild(0).gameObject.transform.position;
-            Debug.Log(respawnPoint);
-        }
-    }
-    */
-    void OnCollisionStay()
-    {
-        isGrounded = true;
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        respawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform.position;
+        Debug.Log("Respawn Point is: "+ respawnPoint);
         movement();
-
+  
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
 
             rb.AddForce(jump * jumpSpeed, ForceMode.Impulse);
             isGrounded = false;
+        }
+
+        //How fast the player falls back down after jumping
+        if (!isGrounded) {
+            rb.AddForce(Vector3.down * fallSpeed, ForceMode.Acceleration);
         }
 
         
@@ -67,8 +58,17 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Quadrant") || collision.gameObject.CompareTag("Respawn")) 
+        {
+            isGrounded = true;
+        }
+    }
+
     void movement() { 
         playerMovement();
+
     }
 
     void playerMovement() {
