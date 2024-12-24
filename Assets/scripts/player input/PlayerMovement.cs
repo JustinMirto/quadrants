@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Timeline;
 
 [RequireComponent(typeof(Rigidbody))] 
 public class PlayerMovement : MonoBehaviour
@@ -44,9 +45,10 @@ public class PlayerMovement : MonoBehaviour
         //How fast the player falls back down after jumping
         if (!isGrounded) {
             rb.AddForce(Vector3.down * fallSpeed, ForceMode.Acceleration);
+            FindAnyObjectByType<AudioManager>().Play("PlayerJump");
         }
 
-        
+
         //If the player falls offscreen respawns
         if (this.gameObject.transform.position.y < -10)
         {
@@ -74,6 +76,5 @@ public class PlayerMovement : MonoBehaviour
     void playerMovement() {
         Vector2 direction = move.ReadValue<Vector2>();
         transform.position += new Vector3(direction.x, 0, direction.y) * speed * Time.deltaTime;
-
     }
 }

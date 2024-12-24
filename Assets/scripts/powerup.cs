@@ -20,7 +20,8 @@ public class Powerup : MonoBehaviour
             powerupText.text = "Powerup Collected!";
             powerupText.gameObject.SetActive(true);
             StartCoroutine(FadeAndMoveText());
-            Destroy(gameObject); 
+            Destroy(gameObject);
+            FindAnyObjectByType<AudioManager>().Play("PowerUpCollect");
         }
     }
 
