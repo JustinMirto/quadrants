@@ -37,7 +37,8 @@ public class PlayerMovement : MonoBehaviour
   
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-
+            FindAnyObjectByType<AudioManager>().Play("PlayerJump");
+            Debug.Log("Press");
             rb.AddForce(jump * jumpSpeed, ForceMode.Impulse);
             isGrounded = false;
         }
@@ -45,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         //How fast the player falls back down after jumping
         if (!isGrounded) {
             rb.AddForce(Vector3.down * fallSpeed, ForceMode.Acceleration);
-            FindAnyObjectByType<AudioManager>().Play("PlayerJump");
+            
         }
 
 
@@ -55,8 +56,9 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log(this.gameObject.transform.position.y);
             this.gameObject.transform.position = respawnPoint;
             rb.velocity = Vector3.zero;
+            FindAnyObjectByType<AudioManager>().Play("FallOff");
         }
-        
+
 
     }
 

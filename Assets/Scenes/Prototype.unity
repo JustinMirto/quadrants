@@ -475,14 +475,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: PlayerJump
-    clip: {fileID: 0}
-    volume: 0
+    clip: {fileID: 8300000, guid: 13b481262ca11bc4cbfa819b6dfe28cc, type: 3}
+    volume: 1
     pitch: 0.3
     source: {fileID: 0}
   - name: PowerUpCollect
-    clip: {fileID: 0}
-    volume: 0.436
-    pitch: 0.3
+    clip: {fileID: 8300000, guid: 7da886a070ddeee4ba6bc0fd415e462c, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: FallOff
+    clip: {fileID: 8300000, guid: 1d2f348735857f047b7a5defd60d930a, type: 3}
+    volume: 1
+    pitch: 0.294
     source: {fileID: 0}
 --- !u!4 &226587081
 Transform:
@@ -2586,6 +2591,26 @@ MonoBehaviour:
   EmptyQuadrantList: []
   gameObjects: []
   fQuadrantSize: 15
+  position:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 5fff9c91-2842-4014-b784-100099b51010
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  press:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 39c6bcf3-806b-485a-a1be-2ee8875146b3
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  swipeResistance: 100
+  pressLimit: 10
   player: {fileID: 537116036}
 --- !u!1 &1311507002
 GameObject:
