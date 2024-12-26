@@ -2592,7 +2592,7 @@ MonoBehaviour:
   gameObjects: []
   fQuadrantSize: 15
   position:
-    m_Name: 
+    m_Name: Position
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 5fff9c91-2842-4014-b784-100099b51010
@@ -2601,7 +2601,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   press:
-    m_Name: 
+    m_Name: Press
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 39c6bcf3-806b-485a-a1be-2ee8875146b3
