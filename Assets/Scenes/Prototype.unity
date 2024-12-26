@@ -475,7 +475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: PlayerJump
-    clip: {fileID: 8300000, guid: 13b481262ca11bc4cbfa819b6dfe28cc, type: 3}
+    clip: {fileID: 8300000, guid: 3ceea5b8be58fbb4da08011b332ca464, type: 3}
     volume: 1
     pitch: 0.3
     source: {fileID: 0}

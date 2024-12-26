@@ -1,7 +1,8 @@
 fileFormatVersion: 2
-guid: 13b481262ca11bc4cbfa819b6dfe28cc
+guid: 3ceea5b8be58fbb4da08011b332ca464
+timeCreated: 1460319082
+licenseType: Store
 AudioImporter:
-  externalObjects: {}
   serializedVersion: 6
   defaultSettings:
     loadType: 0
@@ -15,15 +16,14 @@ AudioImporter:
   normalize: 1
   preloadAudioData: 1
   loadInBackground: 0
-  ambisonic: 0
   3D: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 164843
-  packageName: Free Casual SoundFX Pack
+  productId: 60365
+  packageName: Retro Game SFX
   packageVersion: 1.0
-  assetPath: Assets/Casual SoundFX Pack/Sounds/Pickup Holy.wav
-  uploadId: 362535
+  assetPath: Assets/Retro Game SFX/Game FX/Jump2.wav
+  uploadId: 112316
