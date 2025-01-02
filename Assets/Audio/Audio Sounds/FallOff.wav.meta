@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: 1d2f348735857f047b7a5defd60d930a
+guid: 4e1ff8faed12a475eba9be0e46072269
+labels:
+- Audio
+- Casual
+- Sound
+- SFX
+- Effect
+timeCreated: 1453238764
+licenseType: Store
 AudioImporter:
-  externalObjects: {}
   serializedVersion: 6
   defaultSettings:
     loadType: 0
@@ -15,15 +22,14 @@ AudioImporter:
   normalize: 1
   preloadAudioData: 1
   loadInBackground: 0
-  ambisonic: 0
   3D: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 164843
-  packageName: Free Casual SoundFX Pack
-  packageVersion: 1.0
-  assetPath: Assets/Casual SoundFX Pack/Sounds/GameOver.wav
-  uploadId: 362535
+  productId: 54116
+  packageName: FREE Casual Game SFX Pack
+  packageVersion: 1.1
+  assetPath: Assets/Casual Game Sounds U6/CasualGameSounds/DM-CGS-08.wav
+  uploadId: 688820

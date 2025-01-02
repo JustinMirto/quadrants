@@ -1,6 +1,12 @@
 fileFormatVersion: 2
-guid: 3ceea5b8be58fbb4da08011b332ca464
-timeCreated: 1460319082
+guid: b982e386e67231645a8bff883c97f1a3
+labels:
+- Audio
+- Casual
+- Sound
+- SFX
+- Effect
+timeCreated: 1453238767
 licenseType: Store
 AudioImporter:
   serializedVersion: 6
@@ -22,8 +28,8 @@ AudioImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 60365
-  packageName: Retro Game SFX
-  packageVersion: 1.0
-  assetPath: Assets/Retro Game SFX/Game FX/Jump2.wav
-  uploadId: 112316
+  productId: 54116
+  packageName: FREE Casual Game SFX Pack
+  packageVersion: 1.1
+  assetPath: Assets/Casual Game Sounds U6/CasualGameSounds/DM-CGS-41.wav
+  uploadId: 688820
