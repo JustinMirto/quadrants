@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] AudioSource musicSource;
@@ -41,23 +40,36 @@ public class SoundManager : MonoBehaviour
         musicSource.loop = true;
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+
+        if (scene.buildIndex == 0) 
         {
             musicSource.clip = backgroundMusic;
-            musicSource.Play();
         }
-        else if (SceneManager.GetActiveScene().buildIndex > 0)
+        else if (scene.buildIndex > 0) 
         {
             musicSource.clip = LevelOne;
+        }
+
+        if (musicSource.clip != null)
+        {
             musicSource.Play();
         }
     }
 
-        public void playSoundEffects(AudioClip clip) 
-    { 
+    public void playSoundEffects(AudioClip clip)
+    {
         soundEffectsSource.PlayOneShot(clip);
     }
-
 }
