@@ -47,24 +47,41 @@ MonoBehaviour:
   QuadrantList: []
   EmptyQuadrantList: []
   gameObjects: []
-  fQuadrantSize: 15
+  fQuadrantSize: 5
   position:
     m_Name: Position
     m_Type: 0
-    m_ExpectedControlType: 
+    m_ExpectedControlType: Vector2
     m_Id: 72c781ed-701a-405f-bb0d-b1caa28758e3
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 7c965086-5e10-4821-8512-ff1a681c91fd
+      m_Path: <Mouse>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Position
+      m_Flags: 0
     m_Flags: 0
   press:
     m_Name: Press
-    m_Type: 0
-    m_ExpectedControlType: 
+    m_Type: 1
+    m_ExpectedControlType: Button
     m_Id: 760cf3a9-bf65-4c4d-bfc6-86a2e30d6076
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 752800bf-444c-47d2-8d42-b8fed3a24604
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
     m_Flags: 0
   swipeResistance: 100
+  pressLimit: 10
   player: {fileID: 0}
