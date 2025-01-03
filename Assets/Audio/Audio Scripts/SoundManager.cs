@@ -16,13 +16,24 @@ public class SoundManager : MonoBehaviour
     public AudioClip jump;
     public AudioClip fallOff;
     public AudioClip powerUp;
+    private static SoundManager instance;
 
     private void Awake()
     {
+        // Singleton Pattern: Ensure only one SoundManager exists
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // Make this GameObject persistent
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject); // Destroy duplicate instances
+        }
+
         // Ensure the musicSource is set to loop for background music
         musicSource.loop = true;
     }
-
     public void playBackgroundMusic()
     {
         musicSource.clip = backgroundMusic;
