@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Timeline;
 
 [RequireComponent(typeof(Rigidbody))] 
+
 public class PlayerMovement : MonoBehaviour
 {
     PlayerInput input;
@@ -18,6 +21,15 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     [SerializeField] float speed = 20;
 
+
+    //Enables Audio
+    SoundManager soundManager;
+    private void Awake()
+    {
+        soundManager = GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundManager>();
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,12 +43,13 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         respawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform.position;
-        Debug.Log("Respawn Point is: "+ respawnPoint);
         movement();
   
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-
+            //FindAnyObjectByType<AudioManager>().Play("PlayerJump");
+            soundManager.playSoundEffects(soundManager.jump);
+            Debug.Log("Press");
             rb.AddForce(jump * jumpSpeed, ForceMode.Impulse);
             isGrounded = false;
         }
@@ -44,17 +57,19 @@ public class PlayerMovement : MonoBehaviour
         //How fast the player falls back down after jumping
         if (!isGrounded) {
             rb.AddForce(Vector3.down * fallSpeed, ForceMode.Acceleration);
+            
         }
 
-        
+
         //If the player falls offscreen respawns
         if (this.gameObject.transform.position.y < -10)
         {
             Debug.Log(this.gameObject.transform.position.y);
             this.gameObject.transform.position = respawnPoint;
             rb.velocity = Vector3.zero;
+            soundManager.playSoundEffects(soundManager.fallOff);
         }
-        
+
 
     }
 
@@ -74,6 +89,5 @@ public class PlayerMovement : MonoBehaviour
     void playerMovement() {
         Vector2 direction = move.ReadValue<Vector2>();
         transform.position += new Vector3(direction.x, 0, direction.y) * speed * Time.deltaTime;
-
     }
 }

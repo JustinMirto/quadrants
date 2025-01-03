@@ -8,6 +8,14 @@ public class Powerup : MonoBehaviour
     public float fadeDuration = 1f;      // Duration for fade
     public float moveSpeed = 20f;        // Speed of upward movement
 
+    //Enables audio
+    SoundManager soundManager;
+    private void Awake()
+    {
+        soundManager = GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundManager>();
+
+    }
+
     void Start()
     {
         powerupText.gameObject.SetActive(false);  
@@ -20,7 +28,9 @@ public class Powerup : MonoBehaviour
             powerupText.text = "Powerup Collected!";
             powerupText.gameObject.SetActive(true);
             StartCoroutine(FadeAndMoveText());
-            Destroy(gameObject); 
+            Destroy(gameObject);
+            soundManager.playSoundEffects(soundManager.powerUp);
+
         }
     }
 
