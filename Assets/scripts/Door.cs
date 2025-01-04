@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+
+    [SerializeField] private bool bIsOpen = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,4 +18,15 @@ public class Door : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        
+    }
+
 }
