@@ -101,11 +101,33 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.transform.name + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Respawn") || collision.gameObject.CompareTag("RotateClockwise") || collision.gameObject.CompareTag("MoveOnly")) 
         {
             isGrounded = true;
         }
     }
+
+    void OnCollisionStay(Collision collision)
+    {
+
+        
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            Debug.Log(collision.transform.name + "Wall");
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.velocity = Vector3.zero; // Stop the Rigidbody's movement
+            rb.angularVelocity = Vector3.zero; // Stop any rotation if needed
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+        }
+    }
+
 
     void movement() { 
         playerMovement();
