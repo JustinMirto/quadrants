@@ -244,8 +244,6 @@ public class QuadrantGrid : MonoBehaviour
     void MoveQuadrant(Quadrant thisQuadrant, GameObject neighbour)
     {
         if (neighbour.GetComponent<EmptyQuadrant>() != null)
-        //(thisQuadrant.neighbouringQuadrants.ContainsValue(lastEmptySpace.gameObject))
-        //(Vector3.Distance(lastEmptySpace.transform.position, hit.transform.position) < 20)
         {
             //Debug.Log("Found empty quadrant");
 
@@ -254,21 +252,31 @@ public class QuadrantGrid : MonoBehaviour
 
             //thisQuadrant.neighbouringQuadrants.Clear();
 
-            if (player != null)
+            if (thisQuadrant.iNumMovements > 0)
             {
-                if (Vector3.Distance(thisQuadrant.transform.position, player.transform.position) < 14)
+
+                if (player != null)
                 {
-                    Vector3 Diff = lastEmptySpacePos - thisQuadrant.transform.position;
-                    Vector3 playerOrigin = player.transform.position;
-                    //player.transform.position = Vector3.Lerp(playerOrigin, playerOrigin + Diff, 0.05f);
-                    player.transform.position = playerOrigin + Diff;
+                    if (Vector3.Distance(thisQuadrant.transform.position, player.transform.position) < 14)
+                    {
+                        Vector3 Diff = lastEmptySpacePos - thisQuadrant.transform.position;
+                        Vector3 playerOrigin = player.transform.position;
+                        //player.transform.position = Vector3.Lerp(playerOrigin, playerOrigin + Diff, 0.05f);
+                        player.transform.position = playerOrigin + Diff;
+                    }
                 }
+
+
+                lastEmptySpace.transform.position = thisQuadrant.targetposition;
+                thisQuadrant.targetposition = lastEmptySpacePos;
+
+                InitialiseGrid();
             }
 
-            lastEmptySpace.transform.position = thisQuadrant.targetposition;
-            thisQuadrant.targetposition = lastEmptySpacePos;
-
-            InitialiseGrid();
+            if (!thisQuadrant.bInfMovement)
+            {
+                thisQuadrant.iNumMovements--;
+            }
 
         }
 

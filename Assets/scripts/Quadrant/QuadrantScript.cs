@@ -11,6 +11,9 @@ public class Quadrant : MonoBehaviour
     public Dictionary<string, GameObject> neighbouringQuadrants = new Dictionary<string, GameObject>();
     private Quaternion targetrotation = Quaternion.identity;
 
+    [SerializeField] public bool bInfMovement = true;
+    [SerializeField] public int iNumMovements = 5;
+
     void Awake()
     {
         targetposition = transform.position; //Make sure the quadrant doesn't move to Vector0 automatically
