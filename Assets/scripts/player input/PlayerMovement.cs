@@ -38,11 +38,16 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         jump = new Vector3(0.0f, 0.5f, 1.0f);
         Physics.gravity = new Vector3(0, -70, 0);
+
+                int life = 3;
+
     }
+    int life = 3;
 
     void Update()
     {
         respawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform.position;
+        respawnPoint.y += 4;
         movement();
   
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
@@ -60,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
             
         }
 
-        int life = 3;
+        //int life = 3;
         //If the player falls offscreen respawns
         if (this.gameObject.transform.position.y < -10)
         {
@@ -68,6 +73,25 @@ public class PlayerMovement : MonoBehaviour
             this.gameObject.transform.position = respawnPoint;
             rb.velocity = Vector3.zero;
             life--;
+                if (life == 2) 
+                {
+                GameObject heartLife = GameObject.FindWithTag("heart2");
+                Destroy(heartLife);
+                }
+
+                else if (life == 1)
+                {
+                    GameObject heartLife = GameObject.FindWithTag("heart1");
+                    Destroy(heartLife);
+                }
+
+                else if (life == 0)
+                {
+                    GameObject heartLife = GameObject.FindWithTag("heart");
+                    Destroy(heartLife);
+                }
+
+
             soundManager.playSoundEffects(soundManager.fallOff);
         }
 

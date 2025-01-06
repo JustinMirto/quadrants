@@ -9,6 +9,9 @@ TagManager:
   - MoveOnly
   - Sound
   - locked
+  - heart
+  - heart1
+  - heart2
   layers:
   - Default
   - TransparentFX
