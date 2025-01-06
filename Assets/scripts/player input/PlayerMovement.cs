@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     InputAction move;
 
     public Vector3 jump;
-    public float jumpSpeed = 10.0f;
+    public float jumpSpeed = 25.0f;
     public float fallSpeed = 2.0f;
     public Vector3 respawnPoint = Vector3.zero;
 
@@ -39,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
         jump = new Vector3(0.0f, 0.5f, 1.0f);
         Physics.gravity = new Vector3(0, -70, 0);
 
-                int life = 3;
 
     }
     int life = 3;
