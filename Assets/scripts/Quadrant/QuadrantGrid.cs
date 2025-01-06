@@ -149,7 +149,7 @@ public class QuadrantGrid : MonoBehaviour
                 if (currentQuadrant != null)
                 {
                     Debug.Log("Tag is " + currentQuadrant.tag);
-                    if (currentQuadrant.CompareTag("MoveOnly"))
+                    if (currentQuadrant.CompareTag("MoveOnly") || currentQuadrant.CompareTag("Respawn"))
                     {
                         HandleDirectionMovementWithSwipe(currentQuadrant);
                         currentQuadrant = null;
