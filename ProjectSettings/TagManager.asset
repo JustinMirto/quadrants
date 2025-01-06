@@ -12,6 +12,7 @@ TagManager:
   - heart
   - heart1
   - heart2
+  - Wall
   layers:
   - Default
   - TransparentFX
