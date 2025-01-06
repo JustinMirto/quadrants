@@ -1525,7 +1525,7 @@ MonoBehaviour:
   fallSpeed: 2
   respawnPoint: {x: 0, y: 0, z: 0}
   isGrounded: 0
-  speed: 5
+  speed: 2
 --- !u!114 &491029742
 MonoBehaviour:
   m_ObjectHideFlags: 0
