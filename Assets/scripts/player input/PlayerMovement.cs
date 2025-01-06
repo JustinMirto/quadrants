@@ -60,13 +60,14 @@ public class PlayerMovement : MonoBehaviour
             
         }
 
-
+        int life = 3;
         //If the player falls offscreen respawns
         if (this.gameObject.transform.position.y < -10)
         {
             Debug.Log(respawnPoint);
             this.gameObject.transform.position = respawnPoint;
             rb.velocity = Vector3.zero;
+            life--;
             soundManager.playSoundEffects(soundManager.fallOff);
         }
 
