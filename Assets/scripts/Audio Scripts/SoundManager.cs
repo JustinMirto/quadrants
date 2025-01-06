@@ -21,7 +21,7 @@ public class SoundManager : MonoBehaviour
 
     [Header("Level Background Sound")]
     public AudioClip LevelOne;
-  
+
 
 
     private void Awake()
@@ -44,8 +44,8 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-        public void playSoundEffects(AudioClip clip) 
-    { 
+    public void playSoundEffects(AudioClip clip)
+    {
         soundEffectsSource.PlayOneShot(clip);
     }
 
