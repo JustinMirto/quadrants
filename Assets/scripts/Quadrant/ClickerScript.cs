@@ -13,6 +13,10 @@ public class ClickerScipt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.rotation = Quaternion.identity; //Lock rotation
+        // Only execute if the game is not paused
+        if (!PauseMenu.GameIsPaused)
+        {
+            this.transform.rotation = Quaternion.identity; // Lock rotation
+        }
     }
 }
