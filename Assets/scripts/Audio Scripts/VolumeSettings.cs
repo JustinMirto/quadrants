@@ -20,8 +20,8 @@ public class VolumeSettings : MonoBehaviour
     public void SetMusicVolume()
     { 
         float volume = musicSlider.value;
-        //Mathf.Log10(volume)*20 is needed because the audio mixer volume changes
-        //logarithmically but the slider changes linearlly.
+        //Mathf.Log10(volume)*20 is needed because the audio mixer volume changes logarithmically but the slider changes linearlly.
+
         audioMixer.SetFloat("music", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("musicVolume",volume);
     }
