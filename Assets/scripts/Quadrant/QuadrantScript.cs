@@ -22,8 +22,8 @@ public class Quadrant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, targetposition, 0.05f); // Will smoothly move from its original position to its target position 5% per frame
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, 0.05f); // Will smoothly rotate from its original rotation to its target rotation 5% per frame
+        transform.position = Vector3.Lerp(transform.position, targetposition, 0.1f); // Will smoothly move from its original position to its target position 10% per frame
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, 0.1f); // Will smoothly rotate from its original rotation to its target rotation 10% per frame
     }
 
     public void ClearNeighbours()
