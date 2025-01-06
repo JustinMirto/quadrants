@@ -245,9 +245,10 @@ public class QuadrantGrid : MonoBehaviour
 
                 if (player != null)
                 {
-                    if (Vector3.Distance(thisQuadrant.transform.position, player.transform.position) < 14)
+                    if (Vector3.Distance(thisQuadrant.transform.position, player.transform.position) < fQuadrantSize)
                     {
                         Vector3 Diff = lastEmptySpacePos - thisQuadrant.transform.position;
+                        Diff.y += fQuadrantSize;
                         Vector3 playerOrigin = player.transform.position;
                         //player.transform.position = Vector3.Lerp(playerOrigin, playerOrigin + Diff, 0.05f);
                         player.transform.position = playerOrigin + Diff;
