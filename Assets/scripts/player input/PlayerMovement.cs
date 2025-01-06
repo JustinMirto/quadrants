@@ -13,13 +13,13 @@ public class PlayerMovement : MonoBehaviour
     InputAction move;
 
     public Vector3 jump;
-    public float jumpSpeed = 25.0f;
+    public float jumpSpeed = 10.0f;
     public float fallSpeed = 2.0f;
     public Vector3 respawnPoint = Vector3.zero;
 
     public bool isGrounded;
     Rigidbody rb;
-    [SerializeField] float speed = 20;
+    [SerializeField] float speed = 2;
 
 
     //Enables Audio
@@ -36,8 +36,8 @@ public class PlayerMovement : MonoBehaviour
         input = GetComponent<PlayerInput>();
         move = input.actions.FindAction("move");
         rb = GetComponent<Rigidbody>();
-        jump = new Vector3(0.0f, 2.0f, 0.0f);
-        Physics.gravity = new Vector3(0, -100, 0);
+        jump = new Vector3(0.0f, 0.5f, 1.0f);
+        Physics.gravity = new Vector3(0, -70, 0);
     }
 
     void Update()
@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
         //If the player falls offscreen respawns
         if (this.gameObject.transform.position.y < -10)
         {
-            Debug.Log(this.gameObject.transform.position.y);
+            Debug.Log(respawnPoint);
             this.gameObject.transform.position = respawnPoint;
             rb.velocity = Vector3.zero;
             soundManager.playSoundEffects(soundManager.fallOff);
@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Quadrant") || collision.gameObject.CompareTag("Respawn")) 
+        if (collision.gameObject.CompareTag("Respawn") || collision.gameObject.CompareTag("RotateClockwise") || collision.gameObject.CompareTag("MoveOnly")) 
         {
             isGrounded = true;
         }
