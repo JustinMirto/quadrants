@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.7070658, g: 0.40122947, b: 0.22589915, a: 1}
+  m_IndirectSpecularColor: {r: 0.6943479, g: 0.39465737, b: 0.22435105, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2114,7 +2114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8098678320027435107, guid: 384d84dcee35f8a448e5cd133eae4c07, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.44
+      value: 3.64
       objectReference: {fileID: 0}
     - target: {fileID: 8098678320027435107, guid: 384d84dcee35f8a448e5cd133eae4c07, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2170,9 +2170,6 @@ PrefabInstance:
       addedObject: {fileID: 1480767807}
     - targetCorrespondingSourceObject: {fileID: 1430930529608845346, guid: 384d84dcee35f8a448e5cd133eae4c07, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1480767806}
-    - targetCorrespondingSourceObject: {fileID: 1430930529608845346, guid: 384d84dcee35f8a448e5cd133eae4c07, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1480767805}
     - targetCorrespondingSourceObject: {fileID: 1430930529608845346, guid: 384d84dcee35f8a448e5cd133eae4c07, type: 3}
       insertIndex: -1
@@ -2213,24 +2210,6 @@ MonoBehaviour:
   m_DefaultActionMap: 1
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1480767806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480767804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1901cea253c4ce94c99c8108d33f23a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jump: {x: 0, y: 0, z: 0}
-  jumpSpeed: 25
-  fallSpeed: 2
-  respawnPoint: {x: 0, y: 0, z: 0}
-  isGrounded: 1
-  speed: 20
 --- !u!82 &1480767807
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2438,7 +2417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jump: {x: 0, y: 0, z: 0}
-  jumpSpeed: 5
+  jumpSpeed: 10
   fallSpeed: 2
   respawnPoint: {x: 0, y: 0, z: 0}
   isGrounded: 0
@@ -2948,7 +2927,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 706735911515184568, guid: 1886ef8d830d8694493e1d801e15a7bd, type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: TextCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 706735911515184568, guid: 1886ef8d830d8694493e1d801e15a7bd, type: 3}
       propertyPath: m_IsActive
