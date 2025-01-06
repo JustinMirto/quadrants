@@ -43,7 +43,8 @@ public class PauseMenu : MonoBehaviour
     public void LoadMenu()
     {
         Debug.Log("Loading menu...");
-        // SceneManager.LoadScene("MenuSceneName"); // Uncomment to load menu scene
+        Time.timeScale = 1f; // Reset time scale before loading the menu
+        SceneManager.LoadScene(0); // Assuming the main menu is scene index 0
     }
 
     public void QuitGame()
