@@ -238,20 +238,34 @@ public class QuadrantGrid : MonoBehaviour
             EmptyQuadrant lastEmptySpace = neighbour.GetComponent<EmptyQuadrant>();
             Vector3 lastEmptySpacePos = lastEmptySpace.transform.position;
 
-            if (player != null)
+            //thisQuadrant.neighbouringQuadrants.Clear();
+
+            if (thisQuadrant.iNumMovements > 0)
             {
-                if (Vector3.Distance(thisQuadrant.transform.position, player.transform.position) < 14)
+
+                if (player != null)
                 {
-                    Vector3 Diff = lastEmptySpacePos - thisQuadrant.transform.position;
-                    Vector3 playerOrigin = player.transform.position;
-                    player.transform.position = playerOrigin + Diff;
+                    if (Vector3.Distance(thisQuadrant.transform.position, player.transform.position) < 14)
+                    {
+                        Vector3 Diff = lastEmptySpacePos - thisQuadrant.transform.position;
+                        Vector3 playerOrigin = player.transform.position;
+                        //player.transform.position = Vector3.Lerp(playerOrigin, playerOrigin + Diff, 0.05f);
+                        player.transform.position = playerOrigin + Diff;
+                    }
                 }
+
+
+                lastEmptySpace.transform.position = thisQuadrant.targetposition;
+                thisQuadrant.targetposition = lastEmptySpacePos;
+
+                InitialiseGrid();
             }
 
-            lastEmptySpace.transform.position = thisQuadrant.targetposition;
-            thisQuadrant.targetposition = lastEmptySpacePos;
+            if (!thisQuadrant.bInfMovement)
+            {
+                thisQuadrant.iNumMovements--;
+            }
 
-            InitialiseGrid();
         }
 
         currentQuadrant = null;

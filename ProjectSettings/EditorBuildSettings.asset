@@ -17,5 +17,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Rotate Quadrant.unity
     guid: 6e9af63b7d053054d9ce215fe33b3bda
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: d0844b50664f98748adb632de23e1c8b, type: 2}
   m_UseUCBPForAssetBundles: 0
