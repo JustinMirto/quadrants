@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         input = GetComponent<PlayerInput>();
         move = input.actions.FindAction("move");
         rb = GetComponent<Rigidbody>();
-        jump = new Vector3(0.0f, 2f, 1.0f);
+        jump = new Vector3(0.0f, 0.5f, 1.0f);
         Physics.gravity = new Vector3(0, -70, 0);
 
 
