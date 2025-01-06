@@ -2143,7 +2143,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 316, y: 260}
+  m_AnchoredPosition: {x: 316, y: 135}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &707588044
@@ -3239,7 +3239,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -336, y: 260}
+  m_AnchoredPosition: {x: -336, y: 135}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1319225387
@@ -4045,7 +4045,7 @@ MonoBehaviour:
   jump: {fileID: 8300000, guid: 3d5e7e741d7a3b843b68b51cf0bd26dd, type: 3}
   fallOff: {fileID: 8300000, guid: 4e1ff8faed12a475eba9be0e46072269, type: 3}
   powerUp: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
-  LevelOne: {fileID: 8300000, guid: 9fbb4a7da7b433b4695ffcfc01511b7a, type: 3}
+  LevelOne: {fileID: 8300000, guid: bb32fbe58e3904a5d94ef8995c7d5570, type: 3}
 --- !u!4 &1594017410
 Transform:
   m_ObjectHideFlags: 0

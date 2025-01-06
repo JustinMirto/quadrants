@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 
 [RequireComponent(typeof(Rigidbody))] 
@@ -88,7 +89,8 @@ public class PlayerMovement : MonoBehaviour
                 {
                     GameObject heartLife = GameObject.FindWithTag("heart");
                     Destroy(heartLife);
-                }
+                    SceneManager.LoadScene(0);
+            }
 
 
             soundManager.playSoundEffects(soundManager.fallOff);
