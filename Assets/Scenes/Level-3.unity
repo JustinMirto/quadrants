@@ -179,8 +179,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '''R'' Reset Level'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2b6eae2616d0cf549b6276c709ed6c84, type: 2}
+  m_sharedMaterial: {fileID: 3665270411879144632, guid: 2b6eae2616d0cf549b6276c709ed6c84, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -691,6 +691,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1266254714}
+  - {fileID: 1760098635}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1257,8 +1258,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '''ESC'' Pause/Resume'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2b6eae2616d0cf549b6276c709ed6c84, type: 2}
+  m_sharedMaterial: {fileID: 3665270411879144632, guid: 2b6eae2616d0cf549b6276c709ed6c84, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1377,14 +1378,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760098633}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 465.36188, y: 152.83487, z: -1.0217552}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -56.888123, y: -51.665115, z: -1.0217552}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1983254671}
   - {fileID: 670394437}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 728289023}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1935105393
 GameObject:
@@ -1728,6 +1729,5 @@ SceneRoots:
   - {fileID: 1400995357}
   - {fileID: 763437826}
   - {fileID: 1366731025}
-  - {fileID: 1760098635}
   - {fileID: 728289023}
   - {fileID: 684087360}
