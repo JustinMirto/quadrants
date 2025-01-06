@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro; // TextMeshProUGUI
 using System.Collections;
+using UnityEngine.SceneManagement; // To handle scene management
 
 public class Powerup : MonoBehaviour
 {
@@ -8,12 +9,12 @@ public class Powerup : MonoBehaviour
     public float fadeDuration = 1f;      // Duration for fade
     public float moveSpeed = 20f;        // Speed of upward movement
 
-    //Enables audio
+    // Enables audio
     SoundManager soundManager;
+
     private void Awake()
     {
         soundManager = GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundManager>();
-
     }
 
     void Start()
@@ -31,6 +32,8 @@ public class Powerup : MonoBehaviour
             Destroy(gameObject);
             soundManager.playSoundEffects(soundManager.powerUp);
 
+            // Load the next scene
+            LoadNextScene();
         }
     }
 
@@ -54,5 +57,12 @@ public class Powerup : MonoBehaviour
         }
 
         powerupText.gameObject.SetActive(false);  // Hide after fade out
+    }
+
+    void LoadNextScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = (currentSceneIndex + 1) > 3 ? 0 : currentSceneIndex + 1;
+        SceneManager.LoadScene(nextSceneIndex);
     }
 }
