@@ -9,9 +9,9 @@ The player must be careful, as they only have three lifes - if they run out, the
 
 There are three levels, increasing in difficulty
 
-Level 1 – Mystic Forest
-Level 2 – Sandy Dessert
-Level 3 – Enchanted Temple
+- Level 1 – Mystic Forest
+- Level 2 – Sandy Dessert
+- Level 3 – Enchanted Temple
 
 
 
