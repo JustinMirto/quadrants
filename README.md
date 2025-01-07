@@ -22,6 +22,7 @@ There are three levels, increasing in difficulty
 - [sFuture Modules Pro](https://assetstore.unity.com/packages/3d/environments/sci-fi/sfuture-modules-pro-space-and-ground-104018)
 - [Skybox Series Free](https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633)
 - [Game Buffs](https://assetstore.unity.com/packages/2d/textures-materials/25-free-stylized-textures-grass-ground-floors-walls-more-241895)
+- [Sci-Fi PBR Props](https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-pbr-props-118783#content)
 
 ##   AUDIO:
 - [Background Music](https://assetstore.unity.com/packages/audio/music/electronic/synthwave-retro-song-romancing-the-storm-226321)
