@@ -19,16 +19,16 @@ Level 3 – Enchanted Temple
 # ASSET REFERENCES:
 
 ## TEXTURES/Sprites:
-[sFuture Modules Pro](https://assetstore.unity.com/packages/3d/environments/sci-fi/sfuture-modules-pro-space-and-ground-104018)
-[Skybox Series Free](https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633)
-[Game Buffs](https://assetstore.unity.com/packages/2d/textures-materials/25-free-stylized-textures-grass-ground-floors-walls-more-241895)
+- [sFuture Modules Pro](https://assetstore.unity.com/packages/3d/environments/sci-fi/sfuture-modules-pro-space-and-ground-104018)
+- [Skybox Series Free](https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633)
+- [Game Buffs](https://assetstore.unity.com/packages/2d/textures-materials/25-free-stylized-textures-grass-ground-floors-walls-more-241895)
 
 ##   AUDIO:
-[Background Music](https://assetstore.unity.com/packages/audio/music/electronic/synthwave-retro-song-romancing-the-storm-226321)
+- [Background Music](https://assetstore.unity.com/packages/audio/music/electronic/synthwave-retro-song-romancing-the-storm-226321)
 
-[Level 2 Audio](https://assetstore.unity.com/packages/audio/ambient/sci-fi/retro-synth-80-90-s-191422)
-[Level 1 Audio](https://assetstore.unity.com/packages/audio/music/electronic/free-cyberpunk-sci-fi-soundtrack-183868)
-[Level 3 Audio](https://assetstore.unity.com/packages/audio/music/electronic/future-213766)
+- [Level 2 Audio](https://assetstore.unity.com/packages/audio/ambient/sci-fi/retro-synth-80-90-s-191422)
+- [Level 1 Audio](https://assetstore.unity.com/packages/audio/music/electronic/free-cyberpunk-sci-fi-soundtrack-183868)
+- [Level 3 Audio](https://assetstore.unity.com/packages/audio/music/electronic/future-213766)
 
 ## FONT
-[Arcade Classic](https://www.dafont.com/arcade-classic-2.font)
+- [Arcade Classic](https://www.dafont.com/arcade-classic-2.font)
